@@ -1,0 +1,645 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="margin-top:8%">
+            <!--Card-->
+            <div class="card ongoing text-center  z-depth-2 animated wow fadeIn">
+                <!--Card image-->
+                <div class="view">
+                    <img src="{{img}}" class="img-fluid" alt="{{name}}">
+                    <a style="cursor:default">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!--Card content-->
+                <div class="card-body elegant-color white-text">
+                    <!--Title-->
+                    <h4 class="card-title"><b>{{name}}</b></h4>
+                    <!--Text-->
+                    <p class="card-text white-text">{{text}}</p>
+                    <button class="btn btn-outline-white btn-md waves-effect participate">Click to
+              <b>Participate</b>
+            </button>
+                </div>
+            </div>
+            <!--/.Card-->
+        </div>
+        <div class="col-md-6" style="margin-top:3%">
+            <form [formGroup]="info">
+                <p class="h4 text-center mb-4">Add a new Contest</p>
+
+                <label for="name" class="grey-text">
+          Name of the contest
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="info.get('name').hasError('required') && info.get('name').touched">
+            **Please enter a name
+          </span>
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="info.get('name').hasError('pattern') && info.get('name').touched">
+            **Please enter only characters and numbers
+          </span>
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(info.get('name').hasError('minlength') || info.get('name').hasError('maxlength')) && info.get('text').touched">
+                **Name should be of 5 to 25 characters
+              </span>
+        </label>
+                <input id="name" formControlName="name" [(ngModel)]="name" class="form-control" [ngClass]="(info.get('name').hasError('required')  || 
+         info.get('name').hasError('minLength') ||
+         info.get('name').hasError('maxLength') ||
+          info.get('name').hasError('pattern')) &&
+           info.get('name').touched ? 'error' : ''">
+                <br>
+
+
+
+                <label for="text" class="grey-text">
+          Description
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="info.get('text').hasError('required') && info.get('text').touched">
+            **Please enter a name
+          </span>
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="info.get('text').hasError('pattern') && info.get('text').touched">
+            **Please enter only characters
+          </span>
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(info.get('text').hasError('minlength') || info.get('text').hasError('maxlength')) && info.get('text').touched">
+            **Description should be of 15 to 200 characters
+          </span>
+        </label>
+                <input id="text" [(ngModel)]="text" formControlName="text" class="form-control" [ngClass]="(
+          info.get('text').hasError('required')  ||
+           info.get('text').hasError('pattern') ||
+           ( info.get('text').hasError('minlength') || info.get('text').hasError('maxlength'))
+           ) &&
+            info.get('text').touched ? 'error' : ''">
+                <br>
+
+
+
+                <label for="text" class="grey-text">
+          Image link
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="info.get('img').hasError('required') && info.get('img').touched">
+            **Please enter a name
+          </span>
+          <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="info.get('img').hasError('pattern') && info.get('img').touched">
+            **Please enter only characters
+          </span>
+        </label>
+                <input id="text" [(ngModel)]="img" formControlName="img" class="form-control" [ngClass]="(info.get('img').hasError('required')  || info.get('img').hasError('pattern')) && info.get('img').touched ? 'error' : ''">
+
+
+            </form>
+            <br>
+            <mat-radio-group>
+                <mat-radio-button value="1" checked="true" #ongoing (click)="setValidation(true)">This is an ongoing Contest</mat-radio-button>
+                <mat-radio-button value="2" #upcoming (click)="setValidation(false)">This is an upcoming Contest</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row" [hidden]="!ongoing.checked">
+
+        <div class="col-md-12">
+            <div>
+                <form class="form" [formGroup]="question">
+                    <p class="h4 mb-4">Add Questions</p>
+
+
+                    <label for="ques" class="grey-text">
+            Question
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question.get('ques').hasError('required') && question.get('ques').touched">
+              **Please enter a question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question.get('ques').hasError('pattern') && question.get('ques').touched">
+              **Please enter a valid question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(question.get('ques').hasError('minlength') || question.get('ques').hasError('maxlength') )&& question.get('ques').touched">
+              **Question should be of 10 to 150 characters
+            </span>
+          </label>
+                    <input id="ques" formControlName="ques" class="form-control" [ngClass]="(
+            question.get('ques').hasError('required')  ||
+             question.get('ques').hasError('pattern') ||
+              (question.get('ques').hasError('minlength') || question.get('ques').hasError('maxlength'))
+              )
+               && question.get('ques').touched ? 'error' : ''">
+                    <br>
+
+                    <label for="ques" class="grey-text">
+            Options
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(
+              question.get('option1').invalid  ||
+              question.get('option2').invalid  ||
+              question.get('option3').invalid  ||
+              question.get('option4').invalid 
+              )
+            && (
+              (question.get('option1').touched ) ||
+              (question.get('option2').touched ) ||
+              (question.get('option3').touched ) ||
+              (question.get('option4').touched)
+              )">
+              **Please enter all the options
+            </span>
+          </label>
+                    <div class="row">
+                        <div class="col-md-6">
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">1</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option1" [ngClass]="question.get('option1').invalid && question.get('option1').touched? 'error' : ''">
+                            </div>
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">2</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option2" [ngClass]="question.get('option2').invalid && question.get('option2').touched? 'error' : ''">
+                            </div>
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">3</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option3" [ngClass]="question.get('option3').invalid && question.get('option3').touched? 'error' : ''">
+                            </div>
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">4</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option4" [ngClass]="question.get('option4').invalid && question.get('option4').touched? 'error' : ''">
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="col-md-6 text-center ansDiv">
+                            <label for="ans" class="grey-text">
+                Select the right answer
+              </label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select from here" formControlName="ans" required>
+                                    <mat-option value="1" selected>Option 1</mat-option>
+                                    <mat-option value="2">Option 2</mat-option>
+                                    <mat-option value="3">Option 3</mat-option>
+                                    <mat-option value="4">Option 4</mat-option>
+
+                                </mat-select>
+                                <mat-error *ngIf="question.get('ans').hasError('required')">Please choose an option</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+        <hr>
+
+
+
+        <div class="col-md-12">
+            <div>
+                <form class="form" [formGroup]="question1">
+
+                    <label for="ques" class="grey-text">
+            Question
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question1.get('ques').hasError('required') && question1.get('ques').touched">
+              **Please enter a question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question1.get('ques').hasError('pattern') && question1.get('ques').touched">
+              **Please enter a valid question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(question1.get('ques').hasError('minlength') || question1.get('ques').hasError('maxlength') )&& question1.get('ques').touched">
+              **Question1 should be of 10 to 150 characters
+            </span>
+          </label>
+                    <input id="ques" formControlName="ques" class="form-control" [ngClass]="(
+            question1.get('ques').hasError('required')  ||
+             question1.get('ques').hasError('pattern') ||
+              (question1.get('ques').hasError('minlength') || question1.get('ques').hasError('maxlength'))
+              )
+               && question1.get('ques').touched ? 'error' : ''">
+                    <br>
+
+                    <label for="ques" class="grey-text">
+            Options
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(
+              question1.get('option1').invalid  ||
+              question1.get('option2').invalid  ||
+              question1.get('option3').invalid  ||
+              question1.get('option4').invalid 
+              )
+            && (
+              (question1.get('option1').touched ) ||
+              (question1.get('option2').touched ) ||
+              (question1.get('option3').touched ) ||
+              (question1.get('option4').touched)
+              )">
+              **Please enter all the options
+            </span>
+          </label>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">1</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option1" [ngClass]="question1.get('option1').invalid && question1.get('option1').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">2</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option2" [ngClass]="question1.get('option2').invalid && question1.get('option2').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">3</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option3" [ngClass]="question1.get('option3').invalid && question1.get('option3').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">4</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option4" [ngClass]="question1.get('option4').invalid && question1.get('option4').touched? 'error' : ''">
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6 text-center ansDiv">
+                            <label for="ans" class="grey-text">
+                Select the right answer
+              </label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select from here" formControlName="ans" required>
+                                    <mat-option value="1" selected>Option 1</mat-option>
+                                    <mat-option value="2">Option 2</mat-option>
+                                    <mat-option value="3">Option 3</mat-option>
+                                    <mat-option value="4">Option 4</mat-option>
+
+                                </mat-select>
+                                <mat-error *ngIf="question1.get('ans').hasError('required')">Please choose an option</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <hr>
+
+
+
+
+        <div class="col-md-12">
+            <div>
+                <form class="form" [formGroup]="question2">
+
+                    <label for="ques" class="grey-text">
+            Question
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question2.get('ques').hasError('required') && question2.get('ques').touched">
+              **Please enter a question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question2.get('ques').hasError('pattern') && question2.get('ques').touched">
+              **Please enter a valid question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(question2.get('ques').hasError('minlength') || question2.get('ques').hasError('maxlength') )&& question2.get('ques').touched">
+              **Question2 should be of 10 to 150 characters
+            </span>
+          </label>
+                    <input id="ques" formControlName="ques" class="form-control" [ngClass]="(
+            question2.get('ques').hasError('required')  ||
+             question2.get('ques').hasError('pattern') ||
+              (question2.get('ques').hasError('minlength') || question2.get('ques').hasError('maxlength'))
+              )
+               && question2.get('ques').touched ? 'error' : ''">
+                    <br>
+
+                    <label for="ques" class="grey-text">
+            Options
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(
+              question2.get('option1').invalid  ||
+              question2.get('option2').invalid  ||
+              question2.get('option3').invalid  ||
+              question2.get('option4').invalid 
+              )
+            && (
+              (question2.get('option1').touched ) ||
+              (question2.get('option2').touched ) ||
+              (question2.get('option3').touched ) ||
+              (question2.get('option4').touched)
+              )">
+              **Please enter all the options
+            </span>
+          </label>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">1</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option1" [ngClass]="question2.get('option1').invalid && question2.get('option1').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">2</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option2" [ngClass]="question2.get('option2').invalid && question2.get('option2').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">3</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option3" [ngClass]="question2.get('option3').invalid && question2.get('option3').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">4</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option4" [ngClass]="question2.get('option4').invalid && question2.get('option4').touched? 'error' : ''">
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6 text-center ansDiv">
+                            <label for="ans" class="grey-text">
+                Select the right answer
+              </label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select from here" formControlName="ans" required>
+                                    <mat-option value="1" selected>Option 1</mat-option>
+                                    <mat-option value="2">Option 2</mat-option>
+                                    <mat-option value="3">Option 3</mat-option>
+                                    <mat-option value="4">Option 4</mat-option>
+
+                                </mat-select>
+                                <mat-error *ngIf="question2.get('ans').hasError('required')">Please choose an option</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <hr>
+
+
+
+
+        <div class="col-md-12">
+            <div>
+                <form class="form" [formGroup]="question3">
+
+                    <label for="ques" class="grey-text">
+            Question
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question3.get('ques').hasError('required') && question3.get('ques').touched">
+              **Please enter a question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question3.get('ques').hasError('pattern') && question3.get('ques').touched">
+              **Please enter a valid question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(question3.get('ques').hasError('minlength') || question3.get('ques').hasError('maxlength') )&& question3.get('ques').touched">
+              **Question3 should be of 10 to 150 characters
+            </span>
+          </label>
+                    <input id="ques" formControlName="ques" class="form-control" [ngClass]="(
+            question3.get('ques').hasError('required')  ||
+             question3.get('ques').hasError('pattern') ||
+              (question3.get('ques').hasError('minlength') || question3.get('ques').hasError('maxlength'))
+              )
+               && question3.get('ques').touched ? 'error' : ''">
+                    <br>
+
+                    <label for="ques" class="grey-text">
+            Options
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(
+              question3.get('option1').invalid  ||
+              question3.get('option2').invalid  ||
+              question3.get('option3').invalid  ||
+              question3.get('option4').invalid 
+              )
+            && (
+              (question3.get('option1').touched ) ||
+              (question3.get('option2').touched ) ||
+              (question3.get('option3').touched ) ||
+              (question3.get('option4').touched)
+              )">
+              **Please enter all the options
+            </span>
+          </label>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">1</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option1" [ngClass]="question3.get('option1').invalid && question3.get('option1').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">2</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option2" [ngClass]="question3.get('option2').invalid && question3.get('option2').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">3</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option3" [ngClass]="question3.get('option3').invalid && question3.get('option3').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">4</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option4" [ngClass]="question3.get('option4').invalid && question3.get('option4').touched? 'error' : ''">
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6 text-center ansDiv">
+                            <label for="ans" class="grey-text">
+                Select the right answer
+              </label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select from here" formControlName="ans" required>
+                                    <mat-option value="1" selected>Option 1</mat-option>
+                                    <mat-option value="2">Option 2</mat-option>
+                                    <mat-option value="3">Option 3</mat-option>
+                                    <mat-option value="4">Option 4</mat-option>
+
+                                </mat-select>
+                                <mat-error *ngIf="question3.get('ans').hasError('required')">Please choose an option</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <hr>
+
+
+
+
+        <div class="col-md-12">
+            <div>
+                <form class="form" [formGroup]="question4">
+
+                    <label for="ques" class="grey-text">
+            Question
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question4.get('ques').hasError('required') && question4.get('ques').touched">
+              **Please enter a question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="question4.get('ques').hasError('pattern') && question4.get('ques').touched">
+              **Please enter a valid question
+            </span>
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(question4.get('ques').hasError('minlength') || question4.get('ques').hasError('maxlength') )&& question4.get('ques').touched">
+              **Question4 should be of 10 to 150 characters
+            </span>
+          </label>
+                    <input id="ques" formControlName="ques" class="form-control" [ngClass]="(
+            question4.get('ques').hasError('required')  ||
+             question4.get('ques').hasError('pattern') ||
+              (question4.get('ques').hasError('minlength') || question4.get('ques').hasError('maxlength'))
+              )
+               && question4.get('ques').touched ? 'error' : ''">
+                    <br>
+
+                    <label for="ques" class="grey-text">
+            Options
+            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="(
+              question4.get('option1').invalid  ||
+              question4.get('option2').invalid  ||
+              question4.get('option3').invalid  ||
+              question4.get('option4').invalid 
+              )
+            && (
+              (question4.get('option1').touched ) ||
+              (question4.get('option2').touched ) ||
+              (question4.get('option3').touched ) ||
+              (question4.get('option4').touched)
+              )">
+              **Please enter all the options
+            </span>
+          </label>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">1</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option1" [ngClass]="question4.get('option1').invalid && question4.get('option1').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">2</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option2" [ngClass]="question4.get('option2').invalid && question4.get('option2').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">3</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option3" [ngClass]="question4.get('option3').invalid && question4.get('option3').touched? 'error' : ''">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">4</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="option4" [ngClass]="question4.get('option4').invalid && question4.get('option4').touched? 'error' : ''">
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6 text-center ansDiv">
+                            <label for="ans" class="grey-text">
+                Select the right answer
+              </label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select from here" formControlName="ans" required>
+                                    <mat-option value="1" selected>Option 1</mat-option>
+                                    <mat-option value="2">Option 2</mat-option>
+                                    <mat-option value="3">Option 3</mat-option>
+                                    <mat-option value="4">Option 4</mat-option>
+
+                                </mat-select>
+                                <mat-error *ngIf="question4.get('ans').hasError('required')">Please choose an option</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <hr>
+
+
+
+
+
+
+
+    </div>
+    <br>
+    <div class="row" [hidden]="!upcoming.checked">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <form class="form">
+                <label for="name" class="grey-text">
+          Event date: &nbsp; &nbsp;
+        </label>
+                <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [formControl]="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi="true" #picker></mat-datepicker>
+                </mat-form-field>
+                <br>
+            </form>
+        </div>
+    </div>
+    <div class="row text-center">
+        <button class="btn btn-lg btn-default" [disabled]="isDisabled(ongoing.checked,upcoming.checked,info.valid,question.valid,
+        question1.valid,question2.valid,question3.valid,question4.valid)" (click)="add( info.value, date.value, question.value, question1.value, question2.value, question3.value, question4.value, ongoing.checked)">Add</button>
+        <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="isDisabled(ongoing.checked,upcoming.checked,info.valid,question.valid,question1.valid,question2.valid,question3.valid,question4.valid)">
+      **Please check all the fields before submitting
+    </span>
+    </div>
+
+
+
+    <!-- [disabled]="isDisabled(ongoing.checked,upcoming.checked,info.valid,question.valid,
+    question1.valid,question2.valid,question3.valid,question4.valid)"  -->

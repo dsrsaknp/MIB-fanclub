@@ -1,0 +1,74 @@
+<div *ngIf="!inProgress">
+    <div class="sidenav-containers">
+
+        <div ui-view autoscroll="false"></div>
+
+        <mat-sidenav-container class="mat-sidenav-container">
+      
+       
+      
+          <mat-sidenav #sidenav [opened]="screenWidth > 1000" [mode]="(screenWidth > 840) ? 'side' : 'over'" class="sideNav">
+            <mat-card class="sideNav-title">
+              <div class="sidenav-header text-center">
+      
+                <form class="search-player">
+                  <input [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Search player" type="search"
+                    value="" id="searchPlayer">
+                </form>
+              </div>
+            </mat-card>
+      
+            <div [ngStyle]="{'display' : (screenWidth > 840) ? 'none' : 'block'}">
+              <button (click)='callPlayer(player.pid); sidenav.close(); toggle()' class="player-button" [ngClass]="[player.pid ===isActive ? 'selected-button' : 'player-button']"
+                mat-button *ngFor="let player of players | filter: searchText">
+                <img src="{{player?.imageURL}}" alt="icon" class="icon">
+                <!-- <i class="material-icons selected-buttons">perm_identity</i> -->
+                {{player?.name}}
+              </button>
+      
+            </div>
+            <div [ngStyle]="{'display' : (screenWidth > 840) ? 'block' : 'none'}">
+              <button (click)='callPlayer(player.pid)' class="player-button" [ngClass]="[player.pid ===isActive ? 'selected-button' : 'player-button']"
+                mat-button *ngFor="let player of players | filter: searchText">
+                <img src="{{player?.imageURL}}" alt="icon" class="icon"> {{player?.name}}
+              </button>
+      
+      
+            </div>
+      
+      
+      
+      
+      
+          </mat-sidenav>
+      
+      
+          <mat-sidenav-content>
+      
+            <div class="sidenav-content col-md-12">
+              <!-- <i *ngIf="!open" (click)="sidenav.toggle(); toggle()" class="material-icons sidenav-toggle">keyboard_arrow_right</i> -->
+              <div class="sidenav-toggle">
+                <!-- <i  (click)="sidenav.toggle(); toggle()" class="material-icons sidenav-toggle">keyboard_arrow_left</i> -->
+                <i class="material-icons md-36" (click)="sidenav.toggle(); toggle()">
+                  view_week
+                  </i>
+              </div>
+             
+              <!-- <button (click)="sidenav.toggle()" class="sidenav-toggle" mat-raised-button>Toggle</button> -->
+              <div class="stats container">
+                <app-stats [pid]='pid'></app-stats>
+      
+              </div>
+      
+            </div>
+      
+      
+          </mat-sidenav-content>
+      
+        </mat-sidenav-container>
+      
+      </div>
+</div>
+<div class="col-md-12 text-center" *ngIf="inProgress">
+  <img src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif">
+</div>

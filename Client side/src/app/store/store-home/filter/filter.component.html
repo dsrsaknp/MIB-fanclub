@@ -1,0 +1,78 @@
+<div class="container">
+  <mat-accordion>
+
+    <div class="card">
+      <div class="card-header primary-color text-center white-text">
+        Filter Search
+      </div>
+    </div>
+
+
+
+    <!-- All categories -->
+    <mat-expansion-panel *ngFor='let filter of filters'>
+
+      <mat-expansion-panel-header>
+
+        <mat-panel-title class="blue-grey-text">
+          <strong>{{filter.category | uppercase}}</strong>
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <!-- Category> TYPE -->
+
+      <div class="grey-text" [hidden]='!isTypeAvailable(filter.type)'>
+
+        <p class="card-text">
+          <strong>TYPE</strong>
+        </p>
+
+        <div *ngFor='let type of filter.type; index as i'>
+          <mat-checkbox *ngIf='i<limit' (change)='typeFilter(type, $event)'>
+            <div>
+              {{type}}
+              <span>&ensp; &ensp;</span>
+            </div>
+          </mat-checkbox>
+        </div>
+        <div [hidden]='moreFilters(filter.type)'>
+          <a class="v1 blue-text" (click)='loadMoreFilters(filter.type)'> View all </a>
+        </div>
+        <br>
+        <hr>
+      </div>
+
+      <!-- Category> BRAND -->
+
+      <div class="grey-text" [hidden]='!isBrandAvailable(filter.brand)'>
+
+        <p class="card-text">
+          <strong>BRAND</strong>
+        </p>
+
+        <div *ngFor='let brand of filter.brand; index as i'>
+          <mat-checkbox *ngIf='i<limit' (change)='brandFilter(brand, $event)'>
+            <div>
+              {{brand}}
+              <span>&ensp; &ensp;</span>
+            </div>
+          </mat-checkbox>
+        </div>
+        <div [hidden]='moreFilters(filter.brand)'>
+          <a class="v1 blue-text" (click)='loadMoreFilters(filter.brand)'> View all </a>
+        </div>
+        <br>
+        <hr>
+      </div>
+
+
+
+
+
+
+    </mat-expansion-panel>
+
+
+  </mat-accordion>
+</div>

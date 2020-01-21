@@ -1,0 +1,36 @@
+.row{
+    margin: 0px;
+}
+.right{
+    text-align: center;
+}
+.image{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+/deep/ .countdown {
+    width: auto;
+    height: auto;
+}
+/deep/ .two-dots {
+    display: block;
+}
+
+/deep/ .measurements {
+    width: 100%;
+    color: black;
+    margin-right: 5px;
+    padding:  0px;
+}
+
+/deep/ .measurements-number{
+    font-weight: bold; 
+}
+
+/deep/ .measurements-text{
+    font-size: 0.8em;
+}
+/deep/ .divider {
+    font-size: 30px;
+}

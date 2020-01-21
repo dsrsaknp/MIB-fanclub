@@ -1,0 +1,26 @@
+.question{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+.action{
+    margin-top: 3%;
+}
+button{
+    margin-bottom: 1%;
+}
+button:focus{
+    outline: none;
+}
+mat-horizontal-stepper{
+    overflow: hidden;
+}
+mat-radio-button{
+    width: auto;
+}
+.banner{
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+.banner>h1{
+    width: 100%;
+}

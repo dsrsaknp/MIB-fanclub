@@ -1,0 +1,233 @@
+#head-carousel{
+    height : 500px;   
+}
+
+#top-margin-row2 {
+    margin-top: 50px;
+}
+
+#top-margin-row3{
+    margin-top: 50px;
+    height: 300px;
+    /* box-shadow:  0px -2px 20px 0px rgba(194, 194, 196, 0.5); */
+}
+
+#container3, #container4, #container5{
+    margin-top: 100px;
+    /* box-shadow:  0px -2px 20px 0px rgba(194, 194, 196, 0.5); */
+}
+
+#col-21,#col-23 {
+    height: 250px;
+    background-color: #181717;
+    color: white;
+}
+#col-42 {
+    height: 250px;
+    background-color: #190574;
+    color: white;
+}
+
+#col-41, #col-51{
+    height: 400px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#col-42, #col-52{
+    height: 400px;
+    padding: 0px;
+}
+
+#col-21:hover, #col-22:hover, #col-23:hover, #col-24:hover  {
+    background-color: #5673f5de;
+    opacity: 0.3px;
+}
+
+#col-22,#col-24 {
+    height: 250px;
+    background-color: #2c2b2b;
+    color: white;
+}
+
+#col-21,#col-22,#col-23,#col-24 {
+    border: #f8f8f8 medium solid;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+.cliente{
+    margin-top:50px;
+    border: #8f30fc medium solid;
+    border-radius: 20px;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+}
+
+.cliente1{
+    margin-left: 15px;
+    margin-top:30px;
+    border: #8f30fc medium solid;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 8px;
+}
+
+/* #register{
+    margin-left: 150px;
+} */
+
+#row3col1 {
+    padding-top: 50px;
+}
+#submit{
+    padding-left: 5px;
+    padding-right: 5px; 
+}
+
+#heading2{
+    margin-top: 50px;
+}
+
+#heading3{
+    margin-top: 50px;
+    color: white;
+}
+
+.carousel-caption{
+    top: 180px;
+    bottom: auto;
+}
+#caption-2 {
+    margin-top: 15px;
+}
+
+#caption-1{
+    background: rgba(43, 44, 44, 0.4);   
+}
+
+#logError1, #logError2 {
+    color: rgb(255, 178, 13);
+}
+.img{
+    height: 100%;   
+    object-fit: cover;
+}
+@media screen and (max-width: 730px){
+    .display-3, .cliente1 {
+        font-size: 2.5em;
+    }
+}
+@media screen and (max-width: 980px){
+    .cliente1 {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #row3col1 {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    #goCrazyComment2 {
+        font-size: 0.6em;
+        color: orange;
+    }
+    #goCrazyComment1 {
+        font-size: 1.5em;
+    }
+}
+
+  
+#about{
+    overflow: hidden;
+    text-align: justify;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#textarea-block {
+    /* background:; */
+    /* background: rgb(44, 43, 43); */
+    /* background: rgb(57, 99, 240); */
+    /* background: linear-gradient(to right, rgba(3, 14, 173, 0.89), rgb(115, 170, 252)); */
+    background: linear-gradient(to right, rgba(56, 37, 54, 0.89), rgb(129, 12, 84));
+    /* background: linear-gradient(to right, rgba(119, 1, 143, 0.89), rgb(115, 170, 252)); */
+}
+
+.jumbotron {
+    margin-top: 20px;
+    background: rgb(44, 43, 43);
+}
+
+#devs {
+    margin-top: 30px;
+}
+
+#dev1{
+    border-radius: 100px;
+    width: 50%;
+    
+}
+#devs-row-1, #devs-row-2, #devs-row-3 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+#stadium-image {
+    padding: 0px;
+}
+
+#batsman1-img, #batsman1-img {
+    padding: 0px;
+}
+
+#goCrazyComment2{
+    font-size: 30px;
+}
+
+#contact{
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 80px;
+    background: linear-gradient(to right, rgba(54, 35, 50, 0.89), rgb(129, 12, 84));
+}
+#link:hover {
+    color: blue;
+}
+
+
+@media screen and (max-width: 790px) {
+    #contact {
+       height: 125px;
+       border-radius: 0px;
+       margin-top: 2px;
+    }
+    #row3col2{
+        padding: 0px;
+    }
+    #devs-row-1 {
+        margin-top: 130px;
+    }
+    #devs-row-2, #devs-row-3 {
+        margin-top: 0px;
+    }
+    #textarea-block {
+        height: 350px;
+    }
+    #welcome {
+        font-size: 0.4em
+    }
+    #head-carousel{
+        height : 650px;   
+    }
+    #about {
+        text-align: justify;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+   
+}

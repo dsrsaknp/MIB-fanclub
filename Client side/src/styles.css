@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fafafa;
+}
+
+button:focus {
+    background-color: transparent;
+}

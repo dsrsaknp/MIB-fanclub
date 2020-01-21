@@ -1,0 +1,76 @@
+<!-- <div class="col-md-12" style="padding:0px">
+
+    <mat-card *ngIf="!serverError">
+      <div class="jumbotron text-center">
+        <i class="material-icons md-48">report_problem</i>
+        <h3>server is down!!!</h3>
+      </div>
+    </mat-card>
+    </div> -->
+
+
+<div class="row">
+
+  <div class=" img-thumbnail">
+    <img src = "{{player_img}}" onerror="this.src='./../../../assets/images/dummy_player.jpg';" class="thumbnail" height="300px">
+
+
+        <h3>
+          <b> Name:</b> {{player_name}}
+        </h3>
+        <span>
+          <b>Full Name:</b> {{player_fullName}}
+        </span><br>
+        <span>
+          <b> Born:</b> {{player_born}}
+        </span><br>
+        <span>
+          <b> Age: </b> {{player_age}}
+        </span><br>
+        <span>
+          <b> Playing Role: </b> {{player_playingRole}}
+        </span><br>
+        <span>
+          <b> Batting Style: </b> {{player_battingStyle}}
+        </span><br>
+        <span>
+          <b> Major Teams: </b> {{player_majorTeams}}
+        </span><br>
+  </div>
+                
+
+</div>
+<br>
+<div>
+    <h4 class="text-center font-family-bold">Profile</h4>
+    <p>
+        {{player_profile}}
+    </p>
+</div>
+
+<div class="row">
+
+
+  <app-player-stats [pid]='pid' class="offset-md-1 col-md-10 chart"></app-player-stats>
+
+
+
+
+</div>
+
+
+<div class="offset-md-2 col-md-8 col-sm-12 col-xs-12 bat-table">
+
+  <app-table-batting [pid]='pid' class="col-md-6"></app-table-batting>
+</div>
+
+<div class="offset-md-2 col-md-8 col-sm-12 col-xs-12 bowl-table">
+
+  <app-table-bowling [pid]='pid' class="col-md-6"></app-table-bowling>
+
+
+</div>
+
+
+
+

@@ -1,0 +1,116 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+    <mat-spinner id="loader"></mat-spinner>
+</div>
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+    
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-2" data-slide-to="1"></li>
+        <li data-target="#carousel-example-2" data-slide-to="2"></li>
+    </ol>
+    
+    <div class="carousel-inner" role="listbox" >
+        <div class="carousel-item" *ngFor="let im of image;index as i" [class.active]="i==0" >
+        
+            <div class="view">
+                <img class="d-block w-100" src="{{im.image}}" alt="Second slide" id="slide-img">
+                <div class="mask rgba-black-light"></div>
+            </div>
+           
+            <div class="carousel-caption">
+                <div id="caption-1">
+                   
+                    <div id="imgcaption" >{{im.caption}}</div>
+                </div>              
+              </div>
+        </div>
+    </div>
+    
+    <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+  
+</div>
+<br>
+
+<div class="container example1">
+    Trending Showcase<hr>
+</div> 
+
+<br>
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-4 img-fluid" *ngFor="let n of image1;index as i">
+            <mat-card id="matcard1">
+                <mat-card-content>
+                    <div id="slide-div" >
+                        <img class="d-block w-100  " src="{{n.image}}" alt="alternate slide" id="slide-img1" (click)="openNav(n.image,n.details)">
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+ <div class="row " id="btn-more1" >
+        <div class="col-md-12">
+                <button mat-fab class="more" color="info" (click)="loadMore1();" >
+                        <mat-icon aria-label="Example icon-button with a heart icon" >expand_more</mat-icon>
+                      </button>&nbsp;&nbsp;
+                      <button mat-fab class="more" color="default" (click)="loadLess1();">
+                            <mat-icon aria-label="Example icon-button with a heart icon">expand_less</mat-icon>
+                          </button>
+        </div>
+     </div>
+
+
+
+
+<div id="myNav" class="overlay" [style.display]="disp">    
+    <a class="closebtn" (click)="closeNav()">&times;</a>
+    <div class="overlay-content" id="zoom">
+        <img class="d-block w-100" src="{{imgname}}" alt="alternate slide" id="slide-img2">
+        <div id="imgdetail" >{{imgdetail}}</div>
+    </div>
+</div>
+
+
+
+<div class="container example">
+    Trending Videos<hr>
+</div>
+
+<br>
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-4 " *ngFor="let n of video1;index as i">
+            <mat-card (click)='openDialog(n.video)' id="matcard">
+                <mat-card-content>
+                    <div>
+                        <img src="./../../assets/images/play2.png" id="matcardcontent">
+                    </div>
+                    <img src="https://img.youtube.com/vi/{{n.video}}/hqdefault.jpg" class="img-fluid img" alt="zoom">
+                </mat-card-content>
+            </mat-card>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+
+<div class="row " id="btn-more" >
+    <div class="col-md-12">
+            <button mat-fab class="more" color="info" (click)="loadMore();" >
+                    <mat-icon aria-label="Example icon-button with a heart icon" >expand_more</mat-icon>
+                  </button>&nbsp;&nbsp;
+                  <button mat-fab class="more" color="default" (click)="loadLess();">
+                        <mat-icon aria-label="Example icon-button with a heart icon">expand_less</mat-icon>
+                      </button>
+    </div>
+ </div>

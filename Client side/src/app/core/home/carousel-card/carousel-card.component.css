@@ -1,0 +1,11 @@
+#result{
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+#result>p{
+    margin: 0px;
+}
+#vs{
+    display: table-cell;
+    vertical-align: middle;
+}

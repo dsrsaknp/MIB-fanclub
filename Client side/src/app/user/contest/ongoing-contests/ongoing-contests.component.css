@@ -1,0 +1,25 @@
+
+.ongoing{
+    text-align: center;
+}
+.img-fluid{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.view{
+    height: 200px;
+}
+.card{
+    margin-top: 4%;
+}
+.more{
+    margin: 0 auto;
+}
+button:focus{
+    outline: none;
+}
+.participate:hover{
+    background-color: #fff;
+    color: black;
+}

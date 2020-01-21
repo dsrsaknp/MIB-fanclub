@@ -1,0 +1,115 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+    <mat-spinner id="loader"></mat-spinner>
+</div>
+<div class="container">
+    <div class="row">
+        <h1>Update Product</h1>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-5">
+            <div> <img [src]="editedproductimageURL" width="100%" alt="Card image cap">
+            </div>
+            <div class="card-body text-center">
+                <h4 class="card-title"><strong>{{editedproductName}}</strong></h4>
+                <hr>
+                <br>
+                <h6 class="font-weight-bold indigo-text py-2">{{editedproductCategory}}</h6>
+                <hr>
+                <br>
+                <h6 class="font-weight-bold indigo-text py-2">{{editedproductType}}</h6>
+                <hr>
+                <br>
+                <h6 class="font-weight-bold indigo-text py-2">{{editedproductPrice}}</h6>
+                <hr>
+                <br>
+                <h6 class="font-weight-bold indigo-text py-2">Specifications</h6>
+                <hr>
+                <p>
+                    {{editedproductSpecification}}
+                </p>
+                <hr>
+                <h6 class="font-weight-bold indigo-text py-2">{{editedproductAvailability}}</h6>
+                <hr>
+                <br>
+            </div>
+        </div>
+        <div class="offset-md-1 col-md-4">
+            <form [formGroup]="updateProductForm" (ngSubmit)="updateProduct(updateProductForm.value)">
+                <div class="form-group" [ngClass]="{'has-error':!updateProductForm.controls['name'].valid}">
+                    <label>Name: </label>
+                    <input type="text" name="name" id="name" [(ngModel)]=' editedproductName' class="form-control" [formControl]="updateProductForm.controls['name']">
+                    <div *ngIf="updateProductForm.controls['name'].hasError('required') && updateProductForm.controls['name'].touched" class="alert alert-danger">You must include a product name.</div>
+                    <div *ngIf="updateProductForm.controls['name'].hasError('pattern') && updateProductForm.controls['name'].touched" class="alert alert-danger">You must include a proper product name.</div>
+                    <div *ngIf="updateProductForm.controls['name'].hasError('minlength') && updateProductForm.controls['name'].touched" class="alert alert-danger"> product name should be min of 5 characters.</div>
+                    <div *ngIf="updateProductForm.controls['name'].hasError('maxlength') && updateProductForm.controls['name'].touched" class="alert alert-danger">product name should be max of 20 characters.</div>
+
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!updateProductForm.controls['img'].valid}">
+                    <label>Change image URL: </label>
+                    <input type="text" name="img" id="img" [(ngModel)]=' editedproductimageURL' class="form-control" [formControl]="updateProductForm.controls['img']">
+                    <div *ngIf="updateProductForm.controls['img'].hasError('required') && updateProductForm.controls['img'].touched" class="alert alert-danger">You must include a product imageURL.</div>
+                    <div *ngIf="updateProductForm.controls['img'].hasError('pattern') && updateProductForm.controls['img'].touched" class="alert alert-danger">Invalid product imageURL.</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!updateProductForm.controls['specification'].valid}">
+                    <label>Specification: </label>
+                    <input type="text" name="specification" id="specification" [(ngModel)]=' editedproductSpecification' class="form-control" [formControl]="updateProductForm.controls['specification']">
+                    <div *ngIf="updateProductForm.controls['specification'].hasError('required') && updateProductForm.controls['specification'].touched" class="alert alert-danger">You must include a product specification.</div>
+                    <div *ngIf="updateProductForm.controls['specification'].hasError('minlength') && updateProductForm.controls['specification'].touched" class="alert alert-danger"> product specification should be min of 5 characters.</div>
+                    <div *ngIf="updateProductForm.controls['specification'].hasError('maxlength') && updateProductForm.controls['specification'].touched" class="alert alert-danger">product specification should be max of 100 characters.</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!updateProductForm.controls['price'].valid}">
+                    <label>Price: </label>
+                    <input type="text" name="price" id="price" [(ngModel)]=' editedproductPrice' class="form-control" [formControl]="updateProductForm.controls['price']">
+                    <div *ngIf="updateProductForm.controls['price'].hasError('required') && updateProductForm.controls['price'].touched" class="alert alert-danger">You must include a product price.</div>
+                    <div *ngIf="updateProductForm.controls['price'].hasError('pattern') && updateProductForm.controls['price'].touched" class="alert alert-danger">Product price must include only numbers.</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!updateProductForm.controls['rating'].valid}">
+                    <label>Rating: </label>
+                    <input type="text" name="rating" id="rating" [(ngModel)]=' editedproductRating' class="form-control" [formControl]="updateProductForm.controls['rating']">
+                    <div *ngIf="updateProductForm.controls['rating'].hasError('required') && updateProductForm.controls['rating'].touched" class="alert alert-danger">You must include a product rating.</div>
+                    <div *ngIf="updateProductForm.controls['rating'].hasError('pattern') && updateProductForm.controls['rating'].touched" class="alert alert-danger">Product rating must include only numbers.</div>
+
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!updateProductForm.controls['availability'].valid}">
+                    <label>Availability: </label>
+                    <input type="text" name="availability" id="availability" [(ngModel)]=' editedproductAvailability' class="form-control" [formControl]="updateProductForm.controls['availability']">
+                    <div *ngIf="updateProductForm.controls['availability'].hasError('required') && updateProductForm.controls['availability'].touched" class="alert alert-danger">You must include a product availability.</div>
+                    <div *ngIf="updateProductForm.controls['availability'].hasError('pattern') && updateProductForm.controls['availability'].touched" class="alert alert-danger">Product availability must include only numbers.</div>
+
+                </div>
+
+               
+                <div class="form-group">
+                    <label>Category: </label>
+                    <input type="text" name="category" id="category" [(ngModel)]='editedproductCategory' class="form-control" readonly [formControl]="updateProductForm.controls['category']">
+                    <div *ngIf="updateProductForm.controls['category'].hasError('required') && updateProductForm.controls['category'].touched" class="alert alert-danger">You must select a product category.</div>
+                    <div *ngIf="updateProductForm.controls['category'].hasError('pattern') && updateProductForm.controls['category'].touched" class="alert alert-danger">Product category must include only characters.</div>
+                </div>
+                <label><b>Category (select one):</b></label>
+                <div *ngFor='let category of filters; index as i'>
+                    <button type="button" mat-button (click)="changeCategory(category.category)">{{category.category}}</button>
+                </div>
+                <div class="form-group">
+                        <label>Type: </label>
+    
+                        <input type="text" name="typep" id="typep" [(ngModel)]='editedproductType' class="form-control" readonly [formControl]="updateProductForm.controls['typep']">
+    
+    
+                        <div *ngIf="updateProductForm.controls['typep'].hasError('required') && updateProductForm.controls['typep'].touched" class="alert alert-danger">You must select a product type.</div>
+                        <div *ngIf="updateProductForm.controls['typep'].hasError('pattern') && updateProductForm.controls['typep'].touched" class="alert alert-danger">Product type must include only characters.</div>
+                    </div>
+                    <label><b>Type (select one):</b></label>
+            <div *ngFor='let catFilters of filtersByCategory'>                
+                    <div *ngFor='let ptype of catFilters.type; index as i'>
+                        <button type="button" mat-button (click)="changeType(ptype)">{{ptype}}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" [disabled]="!updateProductForm.valid" class="btn btn-primary">Update Product</button>
+                    <button type="button" class="btn btn-default" (click)="restDetails()">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

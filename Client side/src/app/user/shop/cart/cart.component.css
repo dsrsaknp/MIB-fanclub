@@ -1,0 +1,12 @@
+/* #subtotal, #VAT {
+    float:left;
+}
+
+#subtotal-amt, #VAT-amt {
+    float: right;
+} */
+
+.amt {
+    display: inline-block;
+    float: left;
+}

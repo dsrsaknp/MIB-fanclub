@@ -1,0 +1,329 @@
+<div id="about">
+    <!--Carousel Wrapper-->
+    <div id="carousel-container" class="carousel slide carousel-fade row" data-ride="carousel" style="margin: 0px">
+
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item" *ngFor="let data of testimonials; index as i;" [ngClass]=" i==0 ? 'active' : '' ">
+                <div class="view" id="head-carousel">
+                    <img class="d-block w-100 img" src="../../assets/images/fans02.jpg" alt="Second slide">
+                    <div class="mask rgba-black-light"></div>
+                </div>
+                <div class="carousel-caption">
+                    <div id="caption-1">
+                        <h3 class="h3-responsive">
+                            <i>{{data.response}}</i>
+                        </h3>
+                        <p> - {{data.username}}</p>
+                    </div>
+                    <div class="caption-2" id="welcome">
+                        <h1 class="display-4 mb-2 ">Welcome to
+                            <a style="cursor: default" class="indigo-text font-weight-bold" background="black">MiB</a>
+                            <br> Crazy Cricket (Men in Blue)</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Slides-->
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#carousel-container" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-container" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <!--/.Controls-->
+    </div>
+    <!--/.Carousel Wrapper-->
+
+    <!-- About the page -->
+    <div class="row" id="top-margin-row2">
+        <div class="container">
+            <h1 class=" indigo-text my-3 text-center animated wow fadeInDown">About</h1>
+            <div>
+                <p>MIB Club (Men in Blue) is an engagement platform for Indian Cricket Fans identified as CrazyCricket, governed
+                    by Board of Control for Cricket in India (BCCI). MIB Club brings in exciting opportunities and trending
+                    offers to connect fans and the Indian Cricket Team. The club provides exclusive status to the fan club
+                    members, including the intricate details of the Indian Cricket Team, that every fan would find fascinating
+                    and crazier.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why join us  -->
+    <div class="container" id="container3">
+        <h1 class=" indigo-text display-6 my-3 text-center animated wow fadeInDown">Why join us</h1>
+        <div class="row">
+            <div class="col-md-3 text-center" id="col-21">
+                <div class="cliente" (click)="goToStatistics()">
+                    <h1 class="display-6 my-3 text-center animated wow fadeInDown">Statistics</h1>
+                    <p>Get more in-depth view of your favourite players </p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center" id="col-22">
+                <div class="cliente" (click)="goToStore()">
+                    <h1 class="display-6 my-3 text-center animated wow fadeInDown">Store</h1>
+                    <p>All the cool cricket stuff and trendy items at one place now</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center" id="col-23">
+                <div class="cliente" (click)="goToGallery()">
+                    <h1 class="display-6 my-3 text-center animated wow fadeInDown">Gallery</h1>
+                    <p>Remain updated with the latest events about the players</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center" id="col-24">
+                <div class="cliente" (click)="goToNews()">
+                    <h1 class="display-6 my-3 text-center animated wow fadeInDown">News</h1>
+                    <p> Stay updated with the fixtures and live scoreboard</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="conatiner4">
+        <div class="row">
+            <div class="col-md-6" id="stadium-image">
+                <div id="col-41" style="background:transparent url('../../assets/images/fans01.jpg') no-repeat center center /cover">
+
+                </div>
+            </div>
+            <div class="col-md-6" id="col-42">
+                <h1 class="display-5 font-weight-bold my-3 text-center animated wow fadeInDown" id="heading3">LIVE Contests</h1>
+                <h1 class="display-6 text-center animated wow fadeInDown">You might be the one we've been looking for</h1>
+                <div class="col-md-3"></div>
+                <div class="cliente1">
+                    <p id="contestsDesc" class="text-center">Win exciting prizes, sieze tremendous offers and opportunities to get closer to your favourite players.
+                        <br> </p>
+                    Participate Now
+                    <button class="btn btn-warning col-xs-4" id="register" (click)="goToContest()">Go to Contests >></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="conatiner5">
+        <div class="row">
+            <div class="col-md-6" id="col-51" style="background:transparent url('../../assets/images/images1.jpg') no-repeat center center /cover">
+                <h1 class="display-5 white-text font-weight-bold my-3 text-center animated wow fadeInDown"></h1>
+            </div>
+            <div class="col-md-6" id="col-52" style="background:transparent url('../../assets/images/fans04.jpg') no-repeat center center /cover">
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="textarea-block">
+        <!-- Textarea -->
+        <div class="container animated wow fadeInUp">
+            <div class="row" id="top-margin-row3">
+                <div class="col-md-4" id="row3col1">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="username" name="username" value="{{userName}}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Leave a message..." name="username" [disabled]="!isLoggedIn" [(ngModel)]="response"
+                            required></textarea>
+                    </div>
+                    <!-- <p class="alert" *ngIf="!isLoggedIn">Please Log In to submit your comments</p> -->
+                    <div class="form-group">
+                        <button type="button" class="btn btn-unique wow fadeIn flex-center text-center" id="submit" [disabled]="!isLoggedIn" data-wow-delay="0.4s"
+                            (click)=" OnSubmit()">Comment</button>
+                    </div>
+                    <div class="form-group">
+                        <p id="logError1" *ngIf="!isLoggedIn">Please Log In to submit your comments</p>
+                        <p id="logError2" *ngIf="showLogInError">Please write something</p>
+                    </div>
+                </div>
+                <div class="col-md-4" id="row3col2">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="display-4 mb-2 animated wow fadeInUp orange-text font-weight-bold" [ngClass]="(isValid && user=='')? 'animated wow fadeOutDown':''"
+                                data-wow-delay="1s" id="goCrazyComment1" *ngIf="isValid">Go crazy!!</h1>
+                        </div>
+                        <div class="col-md-12">
+                            <h1 class="display-4 mb-2 animated wow fadeInUp white-text" data-wow-delay="0.8s" id="goCrazyComment2" *ngIf="isValid">Thanks! for your message</h1>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" id="row3col2">
+                        <div class="col-md-12" id="contact">
+                                <h1 class="display-4 mb-2 animated wow fadeInUp white-text" data-wow-delay="0.8s" id="goCrazyComment2">Contact us</h1>
+                                <div class="white-text font-family-bold" id="link">
+                                    <a href="mailto:mibfanclub2018@gmail.com" class="white-text"><u>MiB Fan Club</u></a>
+                                </div>
+                                <div class="white-text font-family-bold">
+                                    Mindtree Kalinga, Bhubaneshwar
+                                </div>
+                        </div>
+                    <!-- <div class="row">
+                        <div class="col-md-12" id="contact">
+                                <h1 class="display-4 mb-2 animated wow fadeInUp white-text" data-wow-delay="0.8s" id="goCrazyComment2">Contact us</h1>
+                                <div class="white-text font-family-bold" id="link">
+                                    <a href="mailto:mibfanclub2018@gmail.com" class="white-text"><u>MiB Fan Club</u></a>
+                                </div>
+                                <div class="white-text font-family-bold">
+                                    Mindtree Kalinga, Bhubaneshwar
+                                </div>
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Textarea -->
+    <div class="container" id="devs">
+        <div>
+            <div class="row" id="devs-row-1">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img class="card-img-top" id="dev1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZ57kVpP1Qym72JmSap5yhdxddiBRsbVpdiT9DyH4AWyDWElE"
+                            alt="Contact Person" alt="Card image cap">
+                        <div class="card card-cascade narrower">
+                        </div>
+
+                        <!-- Card content -->
+                        <div>
+
+                            <!-- Label -->
+                            <h5 class="pink-text pb-2 pt-1">Kushal</h5>
+                            <!-- Title -->
+                            <h4 class="card-title">WebTech track</h4>
+                            <!-- Text -->
+                            <p class="card-text">MINDTREE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img class="card-img-top" id="dev1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZ57kVpP1Qym72JmSap5yhdxddiBRsbVpdiT9DyH4AWyDWElE"
+                            alt="Contact Person" alt="Card image cap">
+                        <div class="card card-cascade narrower">
+                        </div>
+
+                        <!-- Card content -->
+                        <div>
+
+                            <!-- Label -->
+                            <h5 class="pink-text pb-2 pt-1">Vishnu</h5>
+                            <!-- Title -->
+                            <h4 class="card-title">WebTech track</h4>
+                            <!-- Text -->
+                            <p class="card-text">MINDTREE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img class="card-img-top" id="dev1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZ57kVpP1Qym72JmSap5yhdxddiBRsbVpdiT9DyH4AWyDWElE"
+                            alt="Contact Person" alt="Card image cap">
+                        <div class="card card-cascade narrower">
+                        </div>
+
+                        <!-- Card content -->
+                        <div>
+
+                            <!-- Label -->
+                            <h5 class="pink-text pb-2 pt-1">Himanshu</h5>
+                            <!-- Title -->
+                            <h4 class="card-title">WebTech track</h4>
+                            <!-- Text -->
+                            <p class="card-text">MINDTREE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="devs-row-2">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img class="card-img-top" id="dev1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZ57kVpP1Qym72JmSap5yhdxddiBRsbVpdiT9DyH4AWyDWElE"
+                            alt="Contact Person" alt="Card image cap">
+                        <div class="card card-cascade narrower">
+                        </div>
+
+                        <!-- Card content -->
+                        <div>
+
+                            <!-- Label -->
+                            <h5 class="pink-text pb-2 pt-1">Piyush</h5>
+                            <!-- Title -->
+                            <h4 class="card-title">WebTech track</h4>
+                            <!-- Text -->
+                            <p class="card-text">MINDTREE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img class="card-img-top" id="dev1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZ57kVpP1Qym72JmSap5yhdxddiBRsbVpdiT9DyH4AWyDWElE"
+                            alt="Contact Person" alt="Card image cap">
+                        <div class="card card-cascade narrower">
+                        </div>
+
+                        <!-- Card content -->
+                        <div>
+
+                            <!-- Label -->
+                            <h5 class="pink-text pb-2 pt-1">Avinash</h5>
+                            <!-- Title -->
+                            <h4 class="card-title">SDET track</h4>
+                            <!-- Text -->
+                            <p class="card-text">MINDTREE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img class="card-img-top" id="dev1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZ57kVpP1Qym72JmSap5yhdxddiBRsbVpdiT9DyH4AWyDWElE"
+                            alt="Contact Person" alt="Card image cap">
+                        <div class="card card-cascade narrower">
+                        </div>
+
+                        <!-- Card content -->
+                        <div>
+
+                            <!-- Label -->
+                            <h5 class="pink-text pb-2 pt-1">Ashok</h5>
+                            <!-- Title -->
+                            <h4 class="card-title">SDET track</h4>
+                            <!-- Text -->
+                            <p class="card-text">MINDTREE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="devs-row-3">
+                <div class="offset-md-4 col-md-4">
+                    <div class="text-center">
+                        <img class="card-img-top" id="dev1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3JZEttjstnw_ZMaiFnw8QUa8r4aJbPZfIkWFM6EH4k2dpHNl5"
+                            alt="Contact Person" alt="Card image cap">
+                        <div class="card card-cascade narrower">
+                        </div>
+
+                        <!-- Card content -->
+                        <div>
+
+                            <!-- Label -->
+                            <h5 class="pink-text pb-2 pt-1">Divya</h5>
+                            <!-- Title -->
+                            <h4 class="card-title">WebTech track</h4>
+                            <!-- Text -->
+                            <p class="card-text">MINDTREE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

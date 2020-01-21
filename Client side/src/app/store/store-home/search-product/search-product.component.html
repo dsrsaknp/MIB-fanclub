@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="col-md-12 input-group">
+
+    <div class="input-group-prepend">
+      <i class="material-icons md-48">
+        search
+      </i>
+    </div>
+
+
+    <input class="form-control "  name="text" placeholder="Search for items in..." aria-label="State" (keyup) = 'typingSearch()' [matAutocomplete]="auto" [(ngModel)]="stateCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let state of searchData | searchFilter : stateCtrl" (click)="loadProduct(state._id)">
+        <span>{{ state.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+          
+          <button class="input-group-append" mat-raised-button [matMenuTriggerFor]="menu">{{categoryName}} <i class="material-icons">keyboard_arrow_down</i></button>
+    <mat-menu #menu="matMenu" >
+
+        <button mat-menu-item (click)="getcat('All')">All</button>
+        <button mat-menu-item (click)="getcat('Clothing')">Clothing</button>
+        <button mat-menu-item (click)="getcat('Shoes')">Shoes</button>
+        <button mat-menu-item (click)="getcat('Accessories')">Accessories</button>
+        <button mat-menu-item (click)="getcat('Cricket')">Cricket</button>
+        
+
+    </mat-menu>
+
+  </div>
+
+
+
+</div>

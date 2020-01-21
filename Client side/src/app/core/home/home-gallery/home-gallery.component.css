@@ -1,0 +1,26 @@
+.img{
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    
+}
+#gallery{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+@media only screen and (max-width: 768px) {
+    .card {
+        margin-top: 15px;
+    }
+    .img{
+        height: 100px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .mask{
+        padding: 2%;
+    }
+    .col-md-6{
+        padding: 0px;
+    }
+}

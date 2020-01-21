@@ -1,0 +1,43 @@
+<div>
+    <div class="card text-center">
+        <div class="card-header default-color white-text">
+            Order Summary
+        </div>
+        <div class="card-body">
+            <div id="your-cart">
+                <h4 class="card-title">Your Cart</h4><hr>
+                <div>
+                    <p class="card-text"> <strong> Quantity : </strong></p>
+                    <p>{{items}} item(s) added </p>
+                </div>
+                <button class="btn btn-danger btn-md" (click)='viewMyCart(cartItems._id)' >my cart<i class="fa fa-eye fa-1x" aria-hidden="true"></i></button>
+                <hr>
+                <br>
+               <!-- subtotal -->
+               <!-- <div class="amt">
+                    <p class="card-text font-family-bold" id="subtotal"> <strong> Subtotal : </strong> <i class="fa fa-inr" aria-hidden="true"></i> {{price}}</p> 
+               </div>
+               <br> -->
+            <!-- VAT -->
+                <!-- <div class="amt">
+                        <p class="card-text font-family-bold" id="vat"> <strong> VAT : </strong> <i class="fa fa-inr" aria-hidden="true"></i>0.0</p> 
+                </div>
+                <br> -->
+            <!-- Total -->
+                <div class="total">
+                    <h5 class="card-title">Total</h5>
+                </div>
+                 <div class="amt">
+                    <!-- <span>&ensp; &ensp; &ensp;</span> -->
+                    <i class="fa fa-inr" aria-hidden="true"></i>{{total}}.00    
+                 </div>
+                 <br>
+            </div> 
+        </div>
+        <div class="card-footer text-muted default-color white-text">
+            <p class="mb-0">
+                <a (click)="reviewOrder()"> Previous Orders </a>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="container" *ngIf="!orderDone">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-borderless table-responsive w-auto">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th *ngIf="!oneItem">Quantity</th>
+            <th *ngIf="!oneItem">Total</th>
+            <!-- <th>
+              <a (click)='removeAll()' role='button'>Remove All</a>
+            </th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let item of userCartItems'>
+            <td>{{item.name}}</td>
+            <td>
+              <i class="fa fa-inr" aria-hidden="true"></i>{{item.price}}
+
+            <td *ngIf="!oneItem">
+              {{item.qty}}
+   
+            </td >
+
+            <td *ngIf="!oneItem">
+              <i class="fa fa-inr" aria-hidden="true"></i>{{item.price * item.qty}}</td>
+
+          </tr>
+        </tbody>
+
+      </table>
+      <h5>Total: {{sum}}</h5>
+    </div>
+    <div class="col-md-5">
+      <form [formGroup]="rForm" (ngSubmit)="confirm()">
+      <h4>Shipping Address</h4>
+      <h5>Door No.</h5>
+      <input class="form-control col-md-12" type="text" formControlName="door" name="door" id="door" [(ngModel)] = "doorNum" >
+      <p class="alert alert-danger" *ngIf="rForm.get('door').invalid && rForm.get('door').touched">Invalid Door Number</p>
+      <h5>Street Name</h5>
+      <input class="form-control col-md-12"type="text" name="street" formControlName="street"  id="street" [(ngModel)]= "streetName" >
+      <p class="alert alert-danger" *ngIf="rForm.get('street').invalid && rForm.get('street').touched">Invalid Street Name</p>      
+      <h5>City</h5>
+      <input class="form-control col-md-12"type="text" name="city" formControlName="city" id="city" [(ngModel)] = "City" >
+      <p class="alert alert-danger" *ngIf="rForm.get('city').invalid && rForm.get('city').touched">Invalid City Name</p>      
+      <h5>State</h5>
+      <input class="form-control col-md-12"type="text" name="state" formControlName="state" id="state" [(ngModel)] = "State" >
+      <p class="alert alert-danger" *ngIf="rForm.get('state').invalid && rForm.get('state').touched">Invalid State Name</p>      
+      <h5>Pincode</h5>
+      <input class="form-control col-md-12"type="text" name="pincode" formControlName="pincode" id="pincode" [(ngModel)] = "Pincode" >
+      <p class="alert alert-danger" *ngIf="rForm.get('pincode').invalid && rForm.get('pincode').touched">Invalid Pincode Number</p> 
+      <br>        
+      <button [disabled] = "!rForm.valid" type="submit" class="btn btn-primary" > Confirm </button>
+    </form>
+    </div>
+  </div>
+
+</div>
+
+<div class="container" *ngIf="orderDone">
+<div class="text-center">
+    <i class="material-icons md-48">
+        check_circle
+        </i>
+<h4>Your Order has been successfully placed</h4>
+<button type="submit" (click) = 'gotoOrders()' class="btn btn-primary">Goto Orders</button>
+</div>
+</div>

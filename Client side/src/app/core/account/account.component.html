@@ -1,0 +1,158 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+    <mat-spinner id="loader"></mat-spinner>
+</div>
+<div class="container">
+    <div class="row">
+        <h1>Update Profile</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <div mat-card-avatar>
+                <i class="fa fa-user-circle-o" aria-hidden="true" id="acc-icon"></i>
+            </div>
+            <!-- <div>
+                <form class="md-form">
+                    <div class="file-field">
+                        <div class="btn btn-primary btn-sm float-left">
+                            <br>
+                            <span>Upload your picture</span>
+                            <input type="file">
+                        </div>
+                        <!-- <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload your file" disabled>
+                        </div> -->
+            <!-- </div>
+                </form>
+            </div> -->
+        </div>
+        <div class="col-md-8">
+            <form novalidate [formGroup]="rForm" (ngSubmit)="updateUser(rForm.value)">
+                <div class="form-group">
+                    <label for="fname">
+                        First Name:
+                    </label>
+                    <input type="text" formControlName="fname" class="form-control">
+                </div>
+                <div *ngIf="rForm.get('fname').invalid && rForm.get('fname').touched " class="alert alert-danger">
+                    <div *ngIf="rForm.get('fname').hasError('required')">
+                        First Name is required
+                    </div>
+                    <div *ngIf="rForm.get('fname').hasError('minlength') && !rForm.get('fname').hasError('pattern')">
+                        Less than 2 characters
+                    </div>
+                    <div *ngIf="rForm.get('fname').hasError('maxlength') && !rForm.get('fname').hasError('pattern')">
+                        More than 15 characters
+                    </div>
+                    <div *ngIf="rForm.get('fname').hasError('pattern')">
+                        Special Character, digits not allowed
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lname">
+                        Last Name:
+                    </label>
+                    <input type="text" formControlName="lname" class="form-control">
+                </div>
+                <div *ngIf="rForm.get('lname').invalid && rForm.get('lname').touched " class="alert alert-danger">
+                    <div *ngIf="rForm.get('lname').hasError('required')">
+                        Last Name is required
+                    </div>
+                    <div *ngIf="rForm.get('lname').hasError('minlength') && !rForm.get('lname').hasError('pattern')">
+                        Less than 2 characters
+                    </div>
+                    <div *ngIf="rForm.get('lname').hasError('maxlength') && !rForm.get('lname').hasError('pattern')">
+                        More than 15 characters
+                    </div>
+                    <div *ngIf="rForm.get('lname').hasError('pattern')">
+                        Special Character, digits not allowed
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contact">
+                        Contact:
+                    </label>
+                    <input type="text" formControlName="contact" class="form-control">
+                </div>
+                <div *ngIf="rForm.get('contact').invalid && rForm.get('contact').touched" class="alert alert-danger">
+                    <div *ngIf="rForm.get('contact').hasError('required')">
+                        Contact is required
+                    </div>
+                    <div *ngIf="rForm.get('contact').hasError('pattern')">
+                        Contact no can be of 10 digits and start with only 9,8,7,6
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DOB"> Date Of Birth:
+                    </label>
+                    <br>
+                    <div class="input-group-append">
+                        <input data-date-format="DD MM YYYY" [max]="maxDate" [min]="minDate" matInput [matDatepicker]="picker" placeholder="Choose a date" class="form-control" aria-describedby="basic-addon2" name="DOB" formControlName="DOB" [(ngModel)]="DOBinit">
+                        <span class="input-group-text" id="basic-addon2">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">
+                        User Email:
+                    </label>
+                    <input #email type="email" formControlName="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="currentpassword">
+                            Current Password:
+                        </label>
+                    <input type="password" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" formControlName="currentpassword" class="form-control">
+                </div>
+                <div class="alert alert-danger" *ngIf="!forAdal">
+                    For Adal logged in users password is same as email until it is changed.
+                </div>
+                <div *ngIf="rForm.get('currentpassword').invalid && rForm.get('currentpassword').touched" class="alert alert-danger">
+                    <div *ngIf="rForm.get('currentpassword').hasError('required')">
+                        Password is required
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <mat-checkbox formControlName="checkpswd" class="example-margin" (change)="passReq(chkbx.checked)" #chkbx>Change password!</mat-checkbox>
+                    <br>
+                </div>
+                <div class="form-group" *ngIf="chkbx.checked">
+                    <div class="form-group">
+                        <label for="pswd">
+                            New Password:
+                        </label>
+                        <input type="password" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" formControlName="password" class="form-control">
+                    </div>
+                    <div *ngIf="rForm.get('password').invalid && rForm.get('password').touched " class="alert alert-danger">
+                        <div *ngIf="rForm.get('password').hasError('required')">
+                            Password is required
+                        </div>
+                        <div *ngIf="rForm.get('password').hasError('pattern')">
+                            The password should be of 8-16 characters and must contain at least 1 lowercase alphabetical character, 1 uppercase alphabetical character, 1 numeric character,one special character
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmedPassword">
+                            Confirm Password:
+                        </label>
+                        <input type="password" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" class="form-control" formControlName="confirmedPassword">
+                    </div>
+                    <div *ngIf="rForm.get('confirmedPassword').invalid && rForm.get('confirmedPassword').touched " class="alert alert-danger">
+                        <div *ngIf="rForm.get('confirmedPassword').hasError('required')">
+                            Password is required
+                        </div>
+                        <div *ngIf="rForm.get('confirmedPassword').hasError('passwordMismatch')">
+                            Password Does not Matches
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button class="btn btn-primary" type="submit" [disabled]="rForm.invalid">Update</button>
+                    <button class="btn btn-primary" type="button" (click)="reset()">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

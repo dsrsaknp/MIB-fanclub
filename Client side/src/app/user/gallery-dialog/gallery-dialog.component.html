@@ -1,0 +1,8 @@
+
+
+<div class="row player">
+    <youtube-player [height]="'100%'" [width]="'100%'" [videoId]="data.title" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>  
+    
+        <a  (click)='onCloseCancel()' id="anchor" >Close</a>
+   
+</div>

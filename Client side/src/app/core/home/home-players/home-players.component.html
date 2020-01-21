@@ -1,0 +1,61 @@
+<div class="col-md-12">
+
+    <!--Carousel Wrapper-->
+    <div id="item" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+
+
+
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+
+
+            <div class="carousel-item" *ngFor="let data of playersData;let i =index" [ngClass]=" i==0 ? 'active': ''" >
+                <div class="col-md-12">
+
+                    <!--Card-->
+                    <div class="card" >
+
+                        <!--Card image-->
+                        <div class="view" (click) = loadPlayer(data)>
+                            <img src={{data.imageURL}} class="img-fluid" alt="photo">
+                            <a>
+                                <div class="mask rgba-black-slight"></div>
+                            </a>
+                        </div>
+
+                        <!--Card content-->
+                        <div class="card-body text-center" (click) = loadPlayer(data) >
+                            <!--Title-->
+                            <h3 class="card-title white-text">{{data.name}}</h3>
+                            <!--Text-->
+                            <p class="card-text white-text">
+                                    {{data.playingRole}}<br>{{data.born}}<br><b>{{data.country | uppercase}}</b>
+                            </p>
+                            
+                        </div>
+                        <div class="flex-row">
+                                <a class="card-link">
+                                        <a class="btn btn-outline-white btn-md waves-effect" href="#item" data-slide="prev">
+                                                <i class="material-icons">navigate_before</i>
+                                        </a>
+                                </a>
+                                <a class="card-link" style="float:right;" >
+                                        <a class="btn btn-outline-white btn-md waves-effect" href="#item" data-slide="next">
+                                                <i class="material-icons">navigate_next</i>
+                                        </a>
+                                </a>
+                            </div>
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+            </div>
+
+
+        </div>
+        <!--/.Slides-->
+    </div>
+    <!--/.Carousel Wrapper-->
+
+</div>

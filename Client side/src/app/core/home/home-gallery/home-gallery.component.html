@@ -1,0 +1,24 @@
+<div class="row" id="gallery">
+  
+  <div class="col-md-6" *ngFor="let data of galleryData;let i = index">
+    <!--Card-->
+    <div class="card" [style.marginTop]="i>1 ? '15px' : ''">
+
+      <!--Card image-->
+      <div class="view" >
+        <!--Zoom effect-->
+        <div class="view overlay zoom" >
+          <img [src]="data.img" class="img-fluid img" alt="zoom" >
+          <div class="mask rgba-black-light flex-center waves-effect waves-light" >
+            <p class="white-text">{{data.desc.slice(0,30)}}...</p>
+          </div>
+        </div>
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  
+</div>

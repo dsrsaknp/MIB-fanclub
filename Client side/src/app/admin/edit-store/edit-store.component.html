@@ -1,0 +1,208 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+    <mat-spinner id="loader"></mat-spinner>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <span class="editoption">Filter By:</span>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle (click)="getcat('all')">All</mat-button-toggle>
+            <mat-button-toggle (click)="getcat('Clothing')">Clothing</mat-button-toggle>
+            <mat-button-toggle (click)="getcat('Shoes')">Shoes</mat-button-toggle>
+            <mat-button-toggle (click)="getcat('Accessories')">Accessories</mat-button-toggle>
+            <mat-button-toggle (click)="getcat('Cricket')">Cricket</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <!-- <div class="offset-md-3 col-md-3">
+        <span class="editoption">Sort By:</span>
+        <mat-button-toggle-group aria-label="Font Style">
+            <mat-button-toggle (click)="sortBy('name')">Name</mat-button-toggle>
+            <mat-button-toggle (click)="sortBy('category')">Categories</mat-button-toggle>
+            <mat-button-toggle (click)="sortBy('price')">Price</mat-button-toggle>
+            <mat-button-toggle (click)="sortBy('availability')">Availability</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div> -->
+</div>
+<br>
+<div class="col-md-12 table  table-responsive">
+
+    <table class="col-md-12">
+        <thead>
+            <tr>
+                <th>
+                    <b>S.No</b>
+                </th>
+                <th>
+                    <b> Name &nbsp;<i class="fa fa-sort-alpha-asc clickable" (click)="sortBy('name', 'asec')" aria-hidden="true"></i>&nbsp;<i class="fa fa-sort-alpha-desc clickable" aria-hidden="true" (click)="sortBy('name', 'desc')"></i></b>
+                </th>
+                <th class=''>
+                    <b>Category  <i class="fa fa-sort-alpha-asc clickable" (click)="sortBy('category', 'asec')" aria-hidden="true"></i>&nbsp;<i class="fa fa-sort-alpha-desc clickable" aria-hidden="true" (click)="sortBy('category', 'desc')"></i></b>
+                </th>
+                <th>
+                    <b>Type</b>
+                </th>
+                <th>
+                    <b>Rating</b>
+                </th>
+                <th>
+                    <b>Price  <i class="fa fa-sort-numeric-asc clickable" (click)="sortBy('price','asec')" aria-hidden="true"></i>&nbsp;<i class="fa fa-sort-numeric-desc clickable" (click)="sortBy('price','desc')" aria-hidden="true"></i></b>
+                </th>
+                <th>
+                    <b>Availability <i class="fa fa-sort-numeric-asc clickable" (click)="sortBy('availability','asec')" aria-hidden="true"></i>&nbsp;<i class="fa fa-sort-numeric-desc clickable" (click)="sortBy('availability','desc')"aria-hidden="true"></i></b>
+                </th>
+                <th>
+                    <b>#</b>
+                </th>
+                <!-- <th>
+                    <b>#</b>
+                </th>
+                <th>
+                    <b>#</b>
+                </th> -->
+            </tr>
+        </thead>
+        <tbody *ngFor='let product of getFilteredProducts; index as i'>
+            <tr class='clickable'>
+                <td (click)='loadProduct(product._id)'>{{i+1}}</td>
+                <td (click)='loadProduct(product._id)'>
+                    <b> {{product.name}}</b>
+                </td>
+                <td (click)='loadProduct(product._id)'>
+                    <b>{{product.category}}</b>
+                </td>
+                <td (click)='loadProduct(product._id)'>
+                    <b> {{product.type}}</b>
+                </td>
+                <td (click)='loadProduct(product._id)'>
+                    <b> {{product.rating}}</b>
+                </td>
+                <td (click)='loadProduct(product._id)'>
+                    <b> {{product.price}}</b>
+                </td>
+                <td (click)='loadProduct(product._id)'>
+                    <b> {{product.availability}}</b>
+                </td>
+                <td>
+                    <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+                    <mat-menu #menu="matMenu">
+                        <button class="editoption" mat-menu-item (click)='loadProduct(product._id)'>
+              <i class="material-icons">info</i>&nbsp;&nbsp;&nbsp;View</button>
+                        <button class="editoption" mat-menu-item (click)='editProduct(product._id)'>
+              <i class="material-icons">mode_edit</i>&nbsp;&nbsp;&nbsp;Edit</button>
+                        <button class="editoption" mat-menu-item (click)='deleteProduct(product._id)'>
+              <i class="material-icons">delete_forever</i>&nbsp;&nbsp;&nbsp;Delete</button>
+                    </mat-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<span class="editoption">Add Product:</span>
+<button class="btn btn-primary" (click)="showAddProduct()" *ngIf="!showAddProductDiv">
+  <i class="material-icons addsign">add_box</i>
+</button>
+<button class="btn btn-primary" (click)="hideAddProduct()" *ngIf="showAddProductDiv">
+  <i class="material-icons addsign">indeterminate_check_box</i>
+</button>
+<div class="container" *ngIf="showAddProductDiv">
+    <div class="row">
+        <h1>Add Product</h1>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-5" style="overflow: hidden">
+            <div> <img [src]="productImage" width="100%" alt="Product image">
+            </div>
+            <div class="card-body text-center">
+                <h4 class="card-title"><strong>{{productName}}</strong></h4>
+                <hr>
+                <br>
+                <h6 class="font-weight-bold indigo-text py-2">{{productCategory}}</h6>
+                <hr>
+                <br>
+                <h6 class="font-weight-bold indigo-text py-2">Specifications</h6>
+                <hr>
+                <p>
+                    {{productSpecification}}
+                </p>
+                <hr>
+                <br>
+            </div>
+        </div>
+        <div class="offset-md-1 col-md-6 jumbotron">
+            <form [formGroup]="addPrdouctForm" (ngSubmit)="addProduct(addPrdouctForm.value)">
+                <div class="form-group" [ngClass]="{'has-error':!addPrdouctForm.controls['name'].valid}">
+                    <label>Name: </label>
+                    <input type="text" name="name" id="name" [(ngModel)]=' productName' class="form-control" [formControl]="addPrdouctForm.controls['name']">
+                    <div *ngIf="addPrdouctForm.controls['name'].hasError('required') && addPrdouctForm.controls['name'].touched" class="alert alert-danger">You must include a product name.</div>
+                    <div *ngIf="addPrdouctForm.controls['name'].hasError('pattern') && addPrdouctForm.controls['name'].touched" class="alert alert-danger">You must include a proper product name.</div>
+                    <div *ngIf="addPrdouctForm.controls['name'].hasError('minlength') && !addPrdouctForm.controls['name'].hasError('pattern')" class="alert alert-danger"> product name should be min of 5 characters.</div>
+                    <div *ngIf="addPrdouctForm.controls['name'].hasError('maxlength') && !addPrdouctForm.controls['name'].hasError('pattern')" class="alert alert-danger">product name should be max of 20 characters.</div>
+
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!addPrdouctForm.controls['img'].valid}">
+                    <label>Add image URL: </label>
+                    <input type="text" name="img" id="img" [(ngModel)]=' productImage' class="form-control" [formControl]="addPrdouctForm.controls['img']">
+                    <div *ngIf="addPrdouctForm.controls['img'].hasError('required') && addPrdouctForm.controls['img'].touched" class="alert alert-danger">You must include a product imageURL.</div>
+                    <div *ngIf="addPrdouctForm.controls['img'].hasError('pattern') && addPrdouctForm.controls['img'].touched" class="alert alert-danger">Invalid product imageURL.</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!addPrdouctForm.controls['specification'].valid}">
+                    <label>Specification: </label>
+                    <input type="text" name="specification" id="specification" [(ngModel)]=' productSpecification' class="form-control" [formControl]="addPrdouctForm.controls['specification']">
+                    <div *ngIf="addPrdouctForm.controls['specification'].hasError('required') && addPrdouctForm.controls['specification'].touched" class="alert alert-danger">You must include a product specification.</div>
+                    <div *ngIf="addPrdouctForm.controls['specification'].hasError('minlength') && addPrdouctForm.controls['specification'].touched" class="alert alert-danger"> product specification should be min of 5 characters.</div>
+                    <div *ngIf="addPrdouctForm.controls['specification'].hasError('maxlength') && addPrdouctForm.controls['specification'].touched" class="alert alert-danger">product specification should be max of 100 characters.</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!addPrdouctForm.controls['price'].valid}">
+                    <label>Price: </label>
+                    <input type="text" name="price" id="price" [(ngModel)]=' productPrice' class="form-control" [formControl]="addPrdouctForm.controls['price']">
+                    <div *ngIf="addPrdouctForm.controls['price'].hasError('required') && addPrdouctForm.controls['price'].touched" class="alert alert-danger">You must include a product price.</div>
+                    <div *ngIf="addPrdouctForm.controls['price'].hasError('pattern') && addPrdouctForm.controls['price'].touched" class="alert alert-danger">Product price must include only numbers.</div>
+                    <div *ngIf="addPrdouctForm.controls['price'].hasError('minlength') && !addPrdouctForm.controls['price'].hasError('pattern')" class="alert alert-danger">Minimum 2 character needed </div>
+                    <div *ngIf="addPrdouctForm.controls['price'].hasError('maxlength') && !addPrdouctForm.controls['price'].hasError('pattern')" class="alert alert-danger">Maximum price 9999</div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error':!addPrdouctForm.controls['availability'].valid}">
+                    <label>Availability: </label>
+                    <input type="text" name="availability" id="availability" [(ngModel)]=' productAvailability' class="form-control" [formControl]="addPrdouctForm.controls['availability']">
+                    <div *ngIf="addPrdouctForm.controls['availability'].hasError('required') && addPrdouctForm.controls['availability'].touched" class="alert alert-danger">You must include a product availability.</div>
+                    <div *ngIf="addPrdouctForm.controls['availability'].hasError('pattern') && addPrdouctForm.controls['availability'].touched" class="alert alert-danger">Product availability must include only numbers.</div>
+                    <div *ngIf="addPrdouctForm.controls['availability'].hasError('maxlength') && !addPrdouctForm.controls['availability'].hasError('pattern')" class="alert alert-danger">Maximum availability 999</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Category: </label>
+                    <input type="text" name="category" id="category" [(ngModel)]='productCategory' class="form-control" [formControl]="addPrdouctForm.controls['category']" readonly>
+                    <div *ngIf="addPrdouctForm.controls['category'].hasError('required') && addPrdouctForm.controls['category'].touched" class="alert alert-danger">You must select a product category.</div>
+                    <div *ngIf="addPrdouctForm.controls['category'].hasError('pattern') && addPrdouctForm.controls['category'].touched" class="alert alert-danger">Product category must include only characters.</div>
+                </div>
+                <label>
+          <b>Category (select one):</b>
+        </label>
+                <div *ngFor='let filter of filters; index as i'>
+                    <button type="button" mat-button (click)="changeCategory(filter.category)">{{filter.category}}</button>
+                </div>
+                <div class="form-group">
+                    <label>Type: </label>
+                    <input type="text" name="typep" id="typep" [(ngModel)]='productType' class="form-control" [formControl]="addPrdouctForm.controls['typep']" readonly>
+                    <div *ngIf="addPrdouctForm.controls['typep'].hasError('required') && addPrdouctForm.controls['typep'].touched" class="alert alert-danger">You must select a product type.</div>
+                    <div *ngIf="addPrdouctForm.controls['typep'].hasError('pattern') && addPrdouctForm.controls['typep'].touched" class="alert alert-danger">Product type must include only characters.</div>
+                </div>
+                <label>
+          <b>Type (select one):</b>
+        </label>
+                <div *ngFor='let catFilters of filtersByCategory'>
+
+                    <div *ngFor='let ptype of catFilters.type; index as i'>
+                        <button type="button" mat-button (click)="changeType(ptype)">{{ptype}}</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" [disabled]="!addPrdouctForm.valid" class="btn btn-primary">Add Product</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

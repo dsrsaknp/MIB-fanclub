@@ -1,0 +1,10 @@
+.player{
+    height: 100%;
+}
+youtube-player{
+    height: 100%;
+    width: 100%;
+}
+#anchor {
+    font-weight: bold;
+}

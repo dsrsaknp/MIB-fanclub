@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015",
+    "types": [],
+    "experimentalDecorators": true,
+    "allowJs": true
+  },
+  "include": [
+    "../node_modules/ng2share/share.module.ts",
+    "test.ts",
+    "polyfills.ts",
+    "main.ts",
+    "./app/user/user.module.ts",
+    "./app/admin/admin.module.ts",
+    "./app/store/store.module.ts"
+  ],
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

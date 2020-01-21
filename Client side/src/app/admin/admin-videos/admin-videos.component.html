@@ -1,0 +1,48 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+  <mat-spinner id="loader"></mat-spinner>
+</div>
+<br><br>
+
+<div class="container" >                       
+  <form #heroForm="ngForm">
+      <div class="row">
+          <label class="col-sm-12" id="reg" style="font-size:30px;" >Add Videos<hr></label>  
+     </div>
+    <div class="row">
+      <div class="col-md-6"> <label class="" >YouTube Id</label></div>
+      <div class="col-md-6"> 
+        <textarea class="form-control" rows="1" id="title" [(ngModel)]="title" name="title"></textarea>
+      </div>
+    </div><br>
+    <div class="row" id="submit-btn">                
+        <input type="button" class="btn btn-info " (click)="addVideos();heroForm.reset()" value="Add" >
+   </div>
+   <br>
+   <br>
+  </form>
+</div>
+<div class="container table-responsive">
+  <h2>Table List<hr></h2>       
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="td-class">View</th>
+        <th class="td-class">Delete</th>
+        <th class="td-class">Update</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let table of tables;index as i">       
+        <td class="td1-class">  
+          <div class="container1" (click)='viewVideos(table.video)'>
+            <img src="https://img.youtube.com/vi/{{table.video}}/hqdefault.jpg"  id="youtube-image" class="" alt="zoom" height="100" width="150"> 
+            <button class="btn"> <img src="./../../assets/images/play2.png" id="matcardcontent" height="30" width="30"></button>
+          </div>
+        </td>
+        <td class="td-class"><input type="button" class="btn btn-info "  value="Delete" (click)='deleteVideos(table.video)'></td>
+        <td class="td-class"><input type="button" class="btn btn-info"  value="Update" (click)='updateVideos(table.video)'></td>
+       </tr>
+    </tbody>
+  </table>
+</div>
+<br><br><br>

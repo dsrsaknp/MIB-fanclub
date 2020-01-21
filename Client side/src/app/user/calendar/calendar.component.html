@@ -1,0 +1,115 @@
+<div class="container">
+
+  <div class="row ">
+    <div class="col-md-6">
+      <div class="col-md-12 text-center">
+        <mat-card>
+          <h4>
+            <b>Upcoming Matches </b>
+          </h4>
+        </mat-card>
+      </div>
+
+      <div class="row" *ngFor="let fixture of matchData; let i = index">
+
+        <div class="col-md-12 align-middle">
+
+          <div class=" col-md-12 divider text-center"></div>
+          <mat-card style="" [attr.id]="i" (mouseenter)="hoverEffect($event)" (mouseleave)="hoverEffect($event)">
+
+            <mat-card-content>
+              <div class="row text-center">
+                <div class="col-md-2 col-sm-4 col-4">
+                  <img mat-card-avatar src="../../assets/images/{{fixture.team1.trim()}}.png" height="40px">
+                  <br>
+                  <b>{{fixture.team1}}</b>
+                </div>
+                <div class="col-md-2 col-sm-4 col-4">
+                  <h4>VS</h4>
+
+                </div>
+                <div class="col-md-2 col-sm-4 col-4">
+                  <img mat-card-avatar src="../../assets/images/{{fixture.team2.trim()}}.png" height="40px">
+                  <br>
+                  <b>{{fixture.team2}}</b>
+                </div>
+                <div class="col-md-6 col-sm-12 vs">
+                  <b>{{fixture.date}} </b>
+                  <br> {{fixture.venue}}
+                </div>
+
+              </div>
+
+            </mat-card-content>
+
+          </mat-card>
+          <div class=" col-md-12 divider"></div>
+        </div>
+
+      </div>
+<br>
+      <button type="submit"(click) = 'loadMore()' class="btn btn-primary" id="loadButton" > View More</button>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- next -->
+    <div class="col-md-6" id="pastMatches">
+      <div class="col-md-12 text-center">
+        <mat-card>
+          <h4>
+            <b>Past Matches </b>
+          </h4>
+        </mat-card>
+      </div>
+
+      <div class="row" *ngFor="let fixture of matchData1; let i = index">
+
+        <div class="col-md-12 align-middle">
+
+          <div class=" col-md-12 divider text-center"></div>
+          <mat-card style="" [attr.id]="i" (mouseenter)="hoverEffect($event)" (mouseleave)="hoverEffect($event)">
+
+            <mat-card-content>
+              <div class="row text-center">
+                <div class="col-md-2 col-sm-4 col-4">
+                  <img mat-card-avatar src="../../assets/images/{{fixture.team1.trim()}}.png" height="40px">
+                  <br>
+                  <b>{{fixture.team1}}</b>
+                  <h5>{{fixture.team1_score}}</h5>
+                </div>
+                <div class="col-md-2 col-sm-4 col-4">
+                  <h4>VS</h4>
+
+                </div>
+                <div class="col-md-2 col-sm-4 col-4">
+                  <img mat-card-avatar src="../../assets/images/{{fixture.team2.trim()}}.png" height="40px">
+                  <br>
+                  <b>{{fixture.team2}}</b>
+                  <h5>{{fixture.team2_score}}</h5>
+
+                </div>
+                <div class="col-md-6 col-sm-12 vs">
+                  <b>{{fixture.date}} </b>
+                  <br> {{fixture.venue}}
+                  <br> <b>{{fixture.winner}}</b>
+                </div>
+
+              </div>
+
+            </mat-card-content>
+
+          </mat-card>
+          <div class=" col-md-12 divider"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

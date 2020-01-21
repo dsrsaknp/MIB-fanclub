@@ -1,0 +1,31 @@
+<br>
+<br>
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+    <mat-spinner id="loader"></mat-spinner>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 img-fluid " *ngFor="let n of news" id="div-css">
+            <mat-card id="mat-card">
+
+                <mat-card-content (click)='openDialog(n.title,n.image,n.body)' style="margin-bottom:0px">
+                    <img src="{{n.image}}" id="img-stories">
+                    <div id="mat-title">{{n.title}}</div>
+                </mat-card-content>
+                <!-- <share-container direction="horizontal" addedText="" [expandable]="false" [textEnabled]="false" [platforms]="['twitter','facebook','mail']">
+                </share-container> -->
+                <div class="row" (click)="notLog();" [class.active]="isLoggedIn === true ">
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/twitter.png" alt="Smiley face" height="42" width="42"></div>
+                    <div>&nbsp;&nbsp;<img src="assets/images/facebook.png" alt="Smiley face" height="42" width="42"></div>
+                    <div>&nbsp;&nbsp;<img src="assets/images/gmail.png" alt="Smiley face" height="42" width="42"></div>
+                </div>
+                <div [class.active1]="isLoggedIn === false ">
+                 <share-container direction="horizontal" addedText="" [expandable]="false" [textEnabled]="false" [platforms]="['twitter','facebook','mail']">
+                </share-container>
+                </div>
+                 <br>
+            </mat-card>
+            <br><br>
+        </div>
+    </div>
+</div>

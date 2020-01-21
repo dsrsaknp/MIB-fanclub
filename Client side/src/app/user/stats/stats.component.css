@@ -1,0 +1,49 @@
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+    
+}
+.img-thumbnail {
+    border: 0;
+    background: transparent;
+}
+
+.thumbnail {
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+    /* margin-bottom: 10px; */
+}
+.img {
+    width:100%; 
+    border:0;
+    padding: 0;
+}
+
+.details-card {
+    background: white;
+    padding-top: 10px;
+}
+
+
+
+.sidenav {
+    width: 100px;
+    height: 300px;
+}
+
+.material-icons.md-48 { font-size: 48px; }
+
+.bat-table {
+    border:0;
+    
+    background: transparent;
+    
+}

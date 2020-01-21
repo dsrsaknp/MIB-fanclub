@@ -1,0 +1,66 @@
+[{
+        "availability": "15",
+        "brand": "puma",
+        "category": "Clothing",
+        "color": "green",
+        "name": "Green T-shirt",
+        "price": "399",
+        "rating": "3",
+        "type": "pullover",
+        "_id": "5adeb73e914aa915e291588c"
+    }, {
+        "availability": "20",
+        "category": "Clothing",
+        "imageURL": "https://5.imimg.com/data5/MO/HL/MY-20910541/india-cricket-team-t-shirt-500x500.jpg",
+        "name": "Indian Jersey",
+        "price": "299",
+        "rating": "3",
+        "specification": "Awesome Jersey",
+        "type": "tshirt",
+        "_id": "5aef48ee2aeecc1c24a7a052"
+    }, {
+        "availability": "20",
+        "brand": "reebok",
+        "category": "Clothing",
+        "color": "red",
+        "name": "Red T-shirt",
+        "price": "299",
+        "rating": "2",
+        "type": "sports",
+        "_id": "5adeb70d914aa915e2914fb0"
+    }, {
+        "availability": "30",
+        "brand": "casio",
+        "category": "Accessories",
+        "color": "black",
+        "name": "Red Watch",
+        "price": "599",
+        "rating": "5",
+        "type": "tshirt",
+        "_id": "5adeb78b914aa915e291666b"
+
+    }, {
+        "availability": "4",
+        "brand": "reebok",
+        "category": "Accessories",
+        "color": "blue",
+        "name": "Travel Bag",
+        "price": "699",
+        "rating": "6",
+        "type": "bag",
+        "_id": "5adeb7c9914aa915e29171ad"
+
+    },
+    {
+        "availability": "8",
+        "brand": "adidas",
+        "category": "Shoes",
+        "color": "white",
+        "name": "Runnning Shoes",
+        "price": "399",
+        "rating": "3",
+        "type": "shoes",
+        "_id": "5adeb7f0914aa915e29178b3"
+
+    }
+]

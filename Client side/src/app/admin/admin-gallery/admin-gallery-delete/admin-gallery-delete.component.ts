@@ -1,0 +1,29 @@
+
+import { Component, OnInit, Inject} from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ApiService } from '../../../shared-services/api.service';
+
+@Component({
+  selector: 'app-admin-gallery-delete',
+  templateUrl: './admin-gallery-delete.component.html',
+  styleUrls: ['./admin-gallery-delete.component.css']
+})
+export class AdminGalleryDeleteComponent implements OnInit {
+
+// tslint:disable-next-line:max-line-length
+constructor(private api: ApiService, public thisDialogRef: MatDialogRef<AdminGalleryDeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: string) { }
+
+
+ngOnInit() {
+}
+onCloseYes() {
+  this.thisDialogRef.close('yes');
+}
+onCloseNo() {
+  this.thisDialogRef.close('no');
+}
+
+}
+
+
+

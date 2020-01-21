@@ -1,0 +1,43 @@
+<div class="container">
+  <div class=" banner">
+    <h1>{{quizName}}</h1>
+    <p>Select the correct options and wait for the Surprise</p>
+  </div>
+  <mat-horizontal-stepper responsive [linear]=true #stepper *ngIf="!error && !inProgress">
+    <mat-step *ngFor="let ques of questions;let i =index">
+      <div class="col-md-12 question">
+        <b>{{ques.que}}</b>
+      </div>
+
+      
+        <mat-radio-group >
+          <mat-radio-button *ngFor="let options of ques.opt; let optI = index" class="col-md-12" value="{{optI}}" (click)="goForward(stepper,i,optI,ques.ans)">{{options.value}}</mat-radio-button>
+        </mat-radio-group>
+      
+
+      <div class="action col-md-12 ">
+        <button mat-fab matStepperPrevious color="default" style="float:left" matTooltip="Previous">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button *ngIf="(i+1)!=noOfQue" mat-fab color="default" matStepperNext style="float:right" matTooltip="Next">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+
+        <button *ngIf="(i+1)===noOfQue" mat-fab matStepperNext class="btn-success" style="float:right" matTooltip="Submit" (click)="submit()">
+          <mat-icon>done</mat-icon>
+        </button>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>
+
+<div class="col-md-12 text-center" *ngIf="error  && !inProgress">
+  <p style="color:red">You have already given the test</p>
+  <button class=" btn btn-success" routerLink="/user/contests">
+    Go to contest page
+  </button>
+</div>
+<div class="col-md-12 text-center" *ngIf="inProgress">
+  <img src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif">
+</div>

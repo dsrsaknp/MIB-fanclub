@@ -1,0 +1,22 @@
+<div class="container">
+        <div *ngFor="let item of  orders">
+            <div *ngFor="let it of item">
+                    <mat-card >
+                            <div>
+                                <p class="text-center font-family-bond"> Product : {{it.name}}</p>
+                            </div>
+                            <div>
+                                <p class="text-center font-family-bond"> Quantity : {{it.qty}}</p>
+                            </div>
+                            <div>
+                                <p class="text-center font-family-bond"> Price : {{it.price}}</p>
+                            </div>
+                        </mat-card>
+            </div>
+
+        </div>
+    <div>
+        <!-- <p class="text-center font-family-bond"> Shipping Address : {{dummyOrders.address}}</p> -->
+    </div>
+
+</div>

@@ -1,0 +1,72 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+  <mat-spinner id="loader"></mat-spinner>
+</div>
+<br><br>
+<div class="container" >                       
+  <form #heroForm="ngForm"  novalidate [formGroup]="form">
+      <div class="row">
+          <label class="col-sm-12" id="reg" style="font-size:30px;" >Add Images <hr>     </label> 
+     </div>
+    <div class="row">
+      <div class="col-md-4"> <label class="" >Image</label></div>
+      <div class="col-md-4"> 
+        <input type="file" id="image" formControlName="image" name="image" accept="image/*" (change)="handleFileSelect($event)">
+      </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-4">  <label class="" >Caption</label> </div>
+        <div class="col-md-4"> 
+          <textarea class="form-control" rows="1" id="caption" [(ngModel)]="caption"  name="caption" formControlName="caption"></textarea>
+        </div>
+        <div class="col-md-4" *ngIf="form.get('caption').touched && form.get('caption').invalid" class="alert alert-danger">
+          <div *ngIf="form.get('caption').hasError('required') ">
+            caption is required
+           </div>
+      <div *ngIf="form.get('caption').hasError('pattern') ">
+        No leading or trailing whitespace
+      </div>
+        </div>
+    </div><br>
+    <div class="row">
+      <div class="col-md-4">  <label class="" >Details</label> </div>
+      <div class="col-md-4">
+         <textarea class="form-control" rows="1" id="details" [(ngModel)]="details" name="details" formControlName="details"></textarea>
+        </div>
+        <div class="col-md-4" *ngIf="form.get('details').touched && form.get('details').invalid" class="alert alert-danger">
+          <div *ngIf="form.get('details').hasError('required') ">
+            details is required
+           </div>
+      <div *ngIf="form.get('details').hasError('pattern') ">
+        No leading or trailing whitespace
+      </div>
+        </div>
+  </div>
+    <div class="row" id="submit-btn">                
+        <input type="button" class="btn btn-info " (click)="addSlide();heroForm.reset()" value="Add" [disabled]="form.invalid">
+   </div>
+   <br>
+   <br>
+  </form>
+</div><br><br>
+<div class="container">
+  <h2>Table List</h2> 
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Caption</th>
+        <th>View</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let table of tables;index as i">       
+        <td>{{table.caption}}</td>
+        <td><input type="button" class="btn btn-info"  value="View" (click)="viewSlide(table.image,table.caption,table.details)"></td>
+        <td><input type="button" class="btn btn-info"  value="Delete" (click)="deleteSlide(table.caption)"></td>
+        <td><input type="button" class="btn btn-info"  value="Update" (click)="updateSlide(table.image,table.caption,table.details)"></td>
+       </tr>
+    </tbody>
+  </table>
+</div>
+<br><br><br>

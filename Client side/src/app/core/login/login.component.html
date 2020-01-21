@@ -1,0 +1,59 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+    <mat-spinner id="loader"></mat-spinner>
+</div>
+<div>
+    <i class="material-icons right" #closeButton id="close" (click)="closeDialog()">close</i>
+    <div class="col-md-12">
+
+        <div class="">
+            <div class="form-group">
+
+                <h1>Login</h1>
+            </div>
+            <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+                <div class="form-group">
+                    <label>User Email:
+                            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="rForm.get('UID').hasError('required') && rForm.get('UID').touched">
+                                    **Please enter an email
+                                  </span>
+                                  <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="rForm.get('UID').hasError('pattern') && rForm.get('UID').touched">
+                                    **Please enter a valid user Email
+                                  </span>
+                    </label>
+                    <input type="text" class="form-control" formControlName="UID" [(ngModel)]="userEmail" [ngClass]="(rForm.get('UID').hasError('required')  || rForm.get('UID').hasError('pattern'))
+                           && rForm.get('UID').touched ? 'error' : ''">
+                </div>
+
+                <div class="form-group ">
+                    <label>Password:
+                            <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="rForm.get('password').hasError('required') && rForm.get('password').touched">
+                                    **Please enter a password
+                                  </span>
+                                  <span style="color:rgba(255, 0, 0, 0.6)" *ngIf="rForm.get('password').hasError('pattern') && rForm.get('password').touched">
+                                    **Please enter a valid password
+                                  </span>
+                    </label>
+                    <input type="password" formControlName="password" class="form-control" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" id="pass" #pass [ngClass]="(rForm.get('password').hasError('required')  || rForm.get('password').hasError('pattern'))
+                           && rForm.get('password').touched ? 'error' : ''">
+                </div>
+                <div class="form-group">
+                    <input type="submit" #loginButton class="btn btn-success" value="Login" [disabled]="!rForm.valid">
+                    <input type="button" class="btn btn-primary" (click)="openForgotPass()" [disabled]="!rForm.controls['UID'].valid" value="Forgot Password">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <a id="regLink" (click)="openRegister()">Register Yourself</a>
+                        <span> 
+                            or sign in using  <img class="windows" src="./../../../assets/images/windows.png"  alt="" style="height: 50px; width: 50px"  (click)="adalLogin()" srcset="">        
+                           </span>
+                    </label>
+                </div>
+
+                <div *ngIf='!isUser' class="alert alert-danger">
+
+                    wrong credentials
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

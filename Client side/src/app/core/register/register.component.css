@@ -1,0 +1,71 @@
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#loader {
+    /*top: 46%;
+    left: 46%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%); */
+    margin: 20% auto;
+}
+
+.form-container {
+    display: block;
+    width: 90%;
+    padding: 2em;
+    margin: 2em auto;
+    background: #fff;
+}
+
+.button {
+    margin-top: 3rem;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+mat-card {
+    text-align: left;
+    font-size: 16px;
+    background: white;
+    color: rgb(8, 146, 192);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#regLink {
+    color: rgb(8, 146, 192);
+}
+
+#regLink:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#close {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.required:after {
+    color: #e32;
+    content: ' *';
+    display: inline;
+}

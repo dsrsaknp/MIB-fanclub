@@ -1,0 +1,38 @@
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <!--First slide-->
+        <div class="carousel-item" *ngFor="let data of contestData; let i=index" [ngClass]=" i==0 ? 'active' : ''">
+            <div class="row">
+                <div class="col-md-6 " id="col-41">
+                    <img src="{{data.img}}" width="100%" class=" image z-depth-2">
+                </div>
+                <div class="col-md-6 right" id="col-42">
+                    <h1 class="display-5 font-weight-bold my-3 text-center animated wow fadeInDown" id="heading3">{{data.name}}</h1>
+                    <p class="display-6 text-center animated wow fadeInDown">
+                        <countdown [text]="text" units="Days | Hours | Minutes | Seconds" end="{{data.date}}"></countdown>
+                    </p>
+                    <div class="col-md-3"></div>
+                    <div class="cliente1">
+                        <p id="contestsDesc" class="text-center">{{data.text}}</p>
+                            <button class="btn btn-warning col-xs-4" id="register" (click)="sendNotification(data.name)">Notify me >></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/First slide-->
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->

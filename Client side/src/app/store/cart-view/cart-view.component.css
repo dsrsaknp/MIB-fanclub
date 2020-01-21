@@ -1,0 +1,47 @@
+.row {
+    margin-top: 50px;
+}
+
+#row2col1 {
+    padding: 0px;
+    /* padding-left: 15px; */
+}
+
+#row2col2 {
+    padding: 0px;
+    padding-right: 15px;
+}
+
+.plus-icon{
+    color: white;
+}
+
+ @media screen and (max-width: 770px) {
+    #row2col2 {
+        padding: 0px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    #row2col1 {
+        padding: 0px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+} 
+.amt {
+    display: inline-block;
+    float: right;
+}
+.total {
+    display: inline-block;
+    float: left;
+}
+
+.container-fluid{
+    overflow: hidden;
+}
+
+/* #qty{
+    width: 20%;
+} */
+

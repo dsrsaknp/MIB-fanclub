@@ -1,0 +1,51 @@
+<div>
+  <div class="container">
+     <div class="row">
+        <div class="col-md-5">
+          <img src="http://static.sportskeeda.com/wp-content/uploads/2013/11/8-1384092875.jpg" width="100%" alt="Card image cap">
+        </div>
+        <div class="offset-md-1 col-md-6">
+            <div class="container">
+                <div class="card-body text-center">
+                    <h4 class="card-title"><strong>{{productData.name}}</strong></h4>
+                    <hr>
+                    <br>
+                    <h6 class="font-weight-bold indigo-text py-2">{{productData.category}}</h6>
+                    <hr>
+                    <br>
+                    <h6 class="font-weight-bold indigo-text py-2">Specifications</h6>
+                    <hr>
+                    <p>
+                     Nylon fabric <br>
+                     blue color <br>
+                     half sleeves
+                    </p>
+                    <hr>
+                    <br>
+                    <h6 class="font-weight-bold indigo-text py-2">Sizes available</h6>
+                    <hr>
+                    <a>XS</a>&nbsp;
+                    <a>S</a>&nbsp;
+                    <a>M</a>&nbsp;
+                    <a>L</a>&nbsp;
+                    <a>XL</a>
+                    <hr>
+                    <br>
+                  </div>
+                  <div class="text-center">
+                      <button class="btn btn-purple btn-md" id="view" data-toggle="modal" data-target = "#modalLogin" (click)="addToCart(product)">
+                          <span class="badge badge-pill purple">
+                             <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                          </span>
+                          Add to cart
+                          <!-- <p class="card-text font-family-bold white-text" style="margin: 0px" id="price"><strong>Add to cart</strong> -->
+                      </button>
+                      <button class="btn btn-success btn-md" id="view">Buy</button>
+                  </div>
+            </div>
+            
+        </div>
+     </div>
+    
+  </div>
+</div>

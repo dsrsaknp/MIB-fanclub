@@ -1,0 +1,86 @@
+<div class="row" id="carousel-row">
+    <div class="col-md-12" style="padding:  0px;">
+        <!--Carousel Wrapper-->
+        <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+
+            <div class="carousel-inner" role="listbox">
+
+                <div class="carousel-item" *ngFor="let data of recentMatches; let i=index" [ngClass]=" i==0 ? 'active' : ''">
+                    <!--Mask color-->
+                    <div class="view" id="head-carousel">
+                        <img class="d-block w-100" id="head-car-img" [src]="data.img" alt="Second slide">
+                        <div class="mask rgba-black-light"></div>
+                    </div>
+                    <div class="carousel-caption animated fadeInDown">
+                        <app-carousel-card [data]="data"></app-carousel-card>
+                    </div>
+                </div>
+            </div>
+            <!--/.Slides-->
+            <!--Controls-->
+            <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <!--/.Controls-->
+        </div>
+        <!--/.Carousel Wrapper-->
+    </div>
+</div>
+
+<app-breakingnews-carousel id="bn"></app-breakingnews-carousel>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-md-12" id="banner">
+                <h5>
+                    <i class="fa fa-ravelry" aria-hidden="true" [style.color]="'blue'"></i>
+                    <span [id]="'bannerText'" routerLink="/user/calendar">Upcoming
+                        <b>Fixtures</b>
+                    </span>
+                </h5>
+            </div>
+            <app-fixtures></app-fixtures>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12" id="banner">
+                <h5>
+                    <i class="fa fa-ravelry" aria-hidden="true" [style.color]="'blue'"></i>
+                    <span [id]="'bannerText'" routerLink="/user/gallery">Recent
+                        <b>Videos</b>
+                    </span>
+                </h5>
+            </div>
+            <app-recent-videos></app-recent-videos>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="col-md-12" id="banner">
+                <h5>
+                    <i class="fa fa-ravelry" aria-hidden="true" [style.color]="'blue'"></i>
+                    <span [id]="'bannerText'" routerLink="/user/gallery">Exclusive
+                        <b>Images</b>
+                    </span>
+                </h5>
+            </div>
+            <app-home-gallery></app-home-gallery>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-12" id="banner">
+                <h5>
+                    <i class="fa fa-ravelry" aria-hidden="true" [style.color]="'blue'"></i>
+                    <span [id]="'bannerText'" routerLink="/user/team">Know your
+                        <b>Players</b>
+                    </span>
+                </h5>
+            </div>
+            <app-home-players></app-home-players>
+        </div>
+    </div>
+</div>

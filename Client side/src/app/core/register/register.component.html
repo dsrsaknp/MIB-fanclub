@@ -1,0 +1,142 @@
+<div id="overlay" [style.display]="inProgress ? 'block' : 'none'">
+    <mat-spinner id="loader"></mat-spinner>
+</div>
+<i class="material-icons right" id="close" (click)="closeDialog()">close</i>
+<div class="col-md-12">
+    <div class="">
+        <div class="form-group">
+
+            <h1>Register with MiB</h1>
+        </div>
+        <form novalidate [formGroup]="rForm" (ngSubmit)="emailSent ? addUser(rForm.value) : verifyEmail()">
+            <div class="form-group">
+                <label for="fname" class="required">
+                        First Name:
+                    </label>
+                <input type="text" formControlName="fname" class="form-control required">
+            </div>
+            <div *ngIf="rForm.get('fname').invalid && rForm.get('fname').touched" class="alert alert-danger">
+                <div *ngIf="rForm.get('fname').hasError('required')">
+                    First Name is required
+                </div>
+                <div *ngIf="rForm.get('fname').hasError('minlength') && !rForm.get('fname').hasError('pattern')">
+                    Minimum 1 character needed
+                </div>
+                <div *ngIf="rForm.get('fname').hasError('maxlength') && !rForm.get('fname').hasError('pattern')">
+                    More than 15 characters
+                </div>
+                <div *ngIf="rForm.get('fname').hasError('pattern')">
+                    Special Character, digits not allowed
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lname" class="required">
+                        Last Name:
+                   </label>
+                <input type="text" formControlName="lname" class="form-control required">
+            </div>
+            <div *ngIf="rForm.get('lname').invalid && rForm.get('lname').touched " class="alert alert-danger">
+                <div *ngIf="rForm.get('lname').hasError('required')">
+                    Last Name is required
+                </div>
+                <div *ngIf="rForm.get('lname').hasError('minlength') && !rForm.get('lname').hasError('pattern')">
+                    Minimum 1 character needed
+                </div>
+                <div *ngIf="rForm.get('lname').hasError('maxlength') && !rForm.get('lname').hasError('pattern')">
+                    More than 15 characters
+                </div>
+                <div *ngIf="rForm.get('lname').hasError('pattern')">
+                    Special Character, digits not allowed
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contact">
+                        Contact:
+                    </label>
+                <input type="text" formControlName="contact" class="form-control">
+            </div>
+            <div *ngIf="rForm.get('contact').invalid && rForm.get('contact').touched" class="alert alert-danger">
+                <div *ngIf="rForm.get('contact').hasError('pattern')">
+                    Contact no can be of 10 digits and start with only 9,8,7,6
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="DOB" class="required"> Date Of Birth:
+                        </label><br>
+                <div class="input-group-append">
+                    <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Choose a date" (focus)="picker.open()" class="form-control" formControlName="DOB" [(ngModel)]="DOBinit" readonly>
+                    <span class="input-group-text" id="basic-addon2">
+                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker disabled="false"></mat-datepicker></span>
+                </div>
+
+                <div *ngIf="rForm.get('DOB').hasError('required') && rForm.get('DOB').touched" class="alert alert-danger">
+                    DOB is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="required">
+                        User Email:
+                        </label>
+                <input #email type="email" formControlName="email" class="form-control">
+                <span id="message" class="alert-sucess">{{message}}</span>
+            </div>
+            <div *ngIf="rForm.get('email').invalid && rForm.get('email').touched" class="alert alert-danger">
+                <div *ngIf="rForm.get('email').hasError('required')">
+                    Email is required
+                </div>
+                <div *ngIf="rForm.get('email').hasError('email') && !rForm.get('email').hasError('required')">
+                    Invalid Email
+                </div>
+                <div *ngIf="rForm.get('email').hasError('pattern') && !rForm.get('email').hasError('email')">
+                    Invalid Email
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pswd" class="required">
+                        Password:
+                    </label>
+                <input type="password" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" formControlName="password" class="form-control" required>
+                <div *ngIf="rForm.get('password').hasError('required') && rForm.get('password').touched" class="alert alert-danger">
+                    Password is required
+                </div>
+                <div *ngIf="rForm.get('password').hasError('pattern') && !rForm.get('password').touched" class="alert alert-danger">
+                    The password should be of 8-16 characters and must contain at least 1 lowercase alphabetical character, 1 uppercase alphabetical character, 1 numeric character,one special character
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmedPassword" class="required">
+                       Confirm Password:
+                    </label>
+                <input type="password" (copy)="$event.preventDefault()" (paste)="$event.preventDefault()" class="form-control" formControlName="confirmedPassword">
+
+                <div *ngIf="rForm.get( 'confirmedPassword').hasError( 'required') && rForm.get( 'confirmedPassword').touched" class="alert alert-danger">
+                    Password is required
+                </div>
+                <div *ngIf="rForm.get( 'confirmedPassword').hasError( 'passwordMismatch') && rForm.get( 'confirmedPassword').touched" class="alert alert-danger">
+                    Password Does not Matches
+                </div>
+            </div>
+
+            <div [hidden]="!emailSent " class="form-group ">
+                <label for="otp " class="required ">
+                       Confirm OTP:
+                    </label>
+                <input type="text " class="form-control " formControlName="otp">
+            </div>
+
+            <div class="form-group row ">
+                <div *ngIf="!emailSent " class="col-md-5 col-md-offset-1 ">
+                    <button type="submit " class="btn btn-success " name="button " [disabled]="rForm.invalid ">Register</button>
+                </div>
+                <div *ngIf="emailSent " class="col-md-5 col-md-offset-1 ">
+                    <button class="btn btn-success " type="submit " [disabled]="rForm.invalid ">Verify</button><br>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

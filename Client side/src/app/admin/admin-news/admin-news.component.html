@@ -1,0 +1,132 @@
+<div id="overlay" [style.display]=" inProgress ? 'block' : 'none'">
+  <mat-spinner id="loader"></mat-spinner>
+</div>
+<br><br>
+<!-- 
+<form  novalidate [formGroup]="form" (ngSubmit)="addUser(form)">
+  <div class="form-group ">
+    <label for="name">Name: </label>
+    <input type="text" name="" class="form-control " formControlName="name">
+  </div>
+  <div *ngIf="form.get('name').touched && form.get('name').invalid" class="alert alert-danger">
+    <div *ngIf="form.get('name').hasError('required') ">
+      Name is required
+     </div>
+<div *ngIf="form.get('name').hasError('pattern') ">
+ Invalid Name
+</div>
+  </div>
+  <div class="form-group">
+    <label for="contact">Contact: </label>
+    <input type="text" name="" class="form-control" formControlName="contact">
+  </div>
+  <div *ngIf="form.get('contact').touched && form.get('contact').invalid" class="alert alert-danger">
+    <div *ngIf="form.get('contact').hasError('required') ">
+      Contact is required
+     </div>
+     <div *ngIf="form.get('contact').hasError('minLength') ">
+         less than 10 digit
+   </div>
+   <div *ngIf="form.get('contact').hasError('maxLength') ">
+    more than 10 digit
+</div>
+<div *ngIf="form.get('contact').hasError('pattern') ">
+ Invalid Contact
+</div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email: </label>
+    <input type="text" name="" class="form-control" formControlName="email">
+  </div>
+  <div *ngIf="form.get('email').touched && form.get('email').invalid" class="alert alert-danger">
+    <div *ngIf="form.get('email').hasError('required') ">
+        Email is required
+     </div>
+     <div *ngIf="form.get('email').hasError('email') ">
+         Invalid Email 
+   </div>
+  </div>
+  <button type="submit" class="btn btn-success" name="button" [disabled]="form.invalid">Add</button>
+</form> -->
+
+
+
+
+
+
+<div class="container" >                       
+  <form #heroForm="ngForm"  novalidate [formGroup]="form" >
+      <div class="row">
+          <label class="col-sm-12" id="reg" style="font-size:30px;" >Add News<hr></label>  
+     </div>
+    <div class="row">
+      <div class="col-md-4"> <label class="" >Title</label></div>
+      <div class="col-md-4"> 
+        <textarea class="form-control" rows="1" id="title" [(ngModel)]="title" name="title" formControlName="title"></textarea>
+      </div>
+      <div class="col-md-4" *ngIf="form.get('title').touched && form.get('title').invalid" class="alert alert-danger">
+        <div *ngIf="form.get('title').hasError('required') ">
+          Title is required
+         </div>
+    <div *ngIf="form.get('title').hasError('pattern') ">
+     No leading or trailing whitespace 
+    </div>
+      </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-4">  <label class="" >Body</label> </div>
+        <div class="col-md-4"> 
+          <textarea class="form-control" rows="1" id="body" [(ngModel)]="body" name="body" formControlName="body"></textarea>
+        </div>
+        <div class="col-md-4" *ngIf="form.get('body').touched && form.get('body').invalid" class="alert alert-danger">
+          <div *ngIf="form.get('body').hasError('required') ">
+            Body is required
+           </div>
+      <div *ngIf="form.get('body').hasError('pattern') ">
+        No leading or trailing whitespace
+      </div>
+        </div>
+    </div><br>
+    <div class="row">
+      <div class="col-md-4">  <label class="" >Image Url</label> </div>
+      <div class="col-md-4">
+         <textarea class="form-control" rows="1" id="image" [(ngModel)]="image" name="image" formControlName="image"></textarea>
+        </div>
+        <div class="col-md-4" *ngIf="form.get('image').touched && form.get('image').invalid" class="alert alert-danger">
+          <div *ngIf="form.get('image').hasError('required') ">
+            Image is required
+           </div>
+      <div *ngIf="form.get('image').hasError('pattern') ">
+       Image Url should start with https and have png/jpg extension
+      </div>
+        </div>
+  </div><br>
+    <div class="row" id="submit-btn">                
+        <input type="button" class="btn btn-info " (click)="addNews();heroForm.reset()" value="Add" [disabled]="form.invalid">
+   </div>
+   <br>
+   <br>
+  </form>
+</div>
+<div class="container table-responsive">
+  <h2>Table List<hr></h2>       
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="th-class">Title</th>
+        <th class="th-class">View</th>
+        <th class="th-class">Delete</th>
+        <th class="th-class">Update</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let table of tables;index as i">       
+        <td>{{table.title}}</td>
+        <td><input type="button" class="btn btn-info" (click)="ViewNews(table.title,table.body,table.image)" value="View" ></td>
+        <td><input type="button" class="btn btn-info" (click)="deleteNews(table.title)" value="Delete" ></td>
+        <td><input type="button" class="btn btn-info" (click)="updateNews(table.title,table.body,table.image)" value="Update" ></td>
+       </tr>
+    </tbody>
+  </table>
+</div>
+<br><br><br>

@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row" id="row2">
+    <div class="col-md-9" id="row2col1">
+        <table class="table table-borderless table-responsive w-auto">
+
+
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Product Price</th>
+              <th></th>
+              <th>Quantity</th>
+              <th></th>
+              <th>Total</th>
+              <th>
+                <a (click)='removeAll()' role='button'>Remove All</a>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor='let item of cartItems'>
+              <td>{{item.name}}</td>
+              <td>
+                <i class="fa fa-inr" aria-hidden="true"></i>{{item.price}}
+              </td>
+              <td>
+                <button class="btn btn-default btn-sm" matTooltip='Decrease quantity' (click)='decreaseQty(item)' [hidden]='islowQty(item.qty)'>
+                  <span>
+                    <i class="fa fa-minus fa-2x" aria-hidden="true"></i>
+                  </span>
+                </button>
+                <span class="d-inline-block" matTooltip='Cannot be reduced'>
+                  <button class="btn btn-default btn-sm" [hidden]='!islowQty(item.qty)' type="button" disabled>
+                    <i class="fa fa-minus fa-2x" aria-hidden="true"></i>
+                  </button>
+                </span>
+              </td>
+              <td class="quantity-col">
+                {{item.qty}}
+              </td>
+              <td>
+                <button class="btn btn-default btn-sm" matTooltip='Increase quantity' (click)='increaseQty(item)'>
+                  <span>
+                    <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </td>
+              <td>
+                <i class="fa fa-inr" aria-hidden="true"></i>{{item.price * item.qty}}</td>
+              <td>
+                <a (click)='remove(item)'>Remove</a>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+    </div>
+    <div class="col-md-3" id="row2col2">
+      <div>
+        <div class="card text-center">
+          <div class="card-header default-color white-text">
+            Order Summary
+          </div>
+          <div class="card-body">
+            <div id="your-cart">
+              <h4 class="card-title">Your Cart</h4>
+              <hr>
+              <div>
+                <p class="card-text">
+                  <strong> Quantity : </strong>
+                </p>
+                <p>{{items}} item(s) added </p>
+              </div>
+              <button class="btn btn-info btn-md" (click)='backToProductsPage()'> Back to products </button>
+              <hr>
+              <br>
+              <div class="total">
+                <h5 class="card-title">Total</h5>
+              </div>
+              <div class="amt">
+                <i class="fa fa-inr" aria-hidden="true"></i>{{total}}.00
+              </div>
+              <br>
+            </div>
+            <hr>
+            <button class="btn btn-warning btn-md" (click)="proceed()">Proceed</button>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

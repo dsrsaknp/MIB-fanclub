@@ -1,0 +1,27 @@
+<div class="row" id="gallery">
+
+    <div class="col-md-6" *ngFor="let data of videoLink;let i = index">
+        <!--Card-->
+        <div class="card" [style.marginTop]="i>1 ? '15px' : ''" data-toggle="modal" >
+
+            <!--Card image-->
+            <div class="view">
+                <!--Zoom effect-->
+                <div class="view">
+                    <img src="https://img.youtube.com/vi/{{data.video}}/hqdefault.jpg" class="img-fluid img" alt="zoom">
+
+                    <div class="mask flex-center waves-effect waves-light" >
+                        <p class="white-text">
+                            <i class="fa fa-play-circle playBtn" aria-hidden="true" [attr.id]="i" (click)="setSelecter($event)" title="Play"></i>
+                        </p>
+                    </div>
+                </div>
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>

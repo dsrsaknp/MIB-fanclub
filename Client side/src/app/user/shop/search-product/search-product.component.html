@@ -1,0 +1,8 @@
+<form class="form-inline active-purple-4">
+      <input class="form-control form-control-sm w-100" name="text" placeholder="Search for items ..." aria-label="State" [matAutocomplete]="auto" [(ngModel)]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of searchData | searchFilter : stateCtrl"(click)="loadProduct(state._id)">
+          <span>{{ state.name }}</span> 
+        </mat-option>
+      </mat-autocomplete>
+  </form>

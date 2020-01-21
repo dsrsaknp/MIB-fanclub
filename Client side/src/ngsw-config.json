@@ -1,0 +1,67 @@
+{
+    "index": "/index.html",
+    "assetGroups": [
+        {
+            "name": "app",
+            "installMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/index.html"
+                ],
+                "versionedFiles": [
+                    "/*.bundle.css",
+                    "/*.bundle.js",
+                    "/*.chunk.js"
+                ]
+            }
+        },
+        {
+            "name": "assets",
+            "installMode": "lazy",
+            "updateMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/assets/**"
+                ],
+                "urls": [
+                    "https://fonts.googleapis.com/**"
+                ]
+            }
+        }
+    ],
+    "dataGroups": [
+        {
+            "name": "freshness-api",
+            "urls": [
+                "/calendar",
+                "/pastMatches",
+                "/getProductByCategory/**"
+            ],
+            "cacheConfig": {
+                "strategy": "freshness",
+                "maxSize": 20,
+                "maxAge": "1h",
+                "timeout": "10s"
+            }
+        },
+        {
+            "name": "performance-api",
+            "urls": [
+                "/home/**",
+                "/getLeaderBoard",
+                "/getContests/**",
+                "/getUpcomingContests",
+                "/getProducts",
+                "/getFilters",
+                "/getOrders/**",
+                "/getUserTestimonial"
+            ],
+            "cacheConfig": {
+                "strategy": "performance",
+                "maxSize": 20,
+                "maxAge": "1h",
+                "timeout": "10s"
+            }
+        }
+    ]
+}
